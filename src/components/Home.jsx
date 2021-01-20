@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Company } from '../assets/company.svg';
 
 function Home() {
@@ -13,7 +14,9 @@ function Home() {
         <h1>Collaborate with your Team</h1>
       </div>
       <div className="home__btn">
-        <button className="btn">Join Now</button>
+        <Link to="/register">
+          <button className="btn">Join Now</button>
+        </Link>
       </div>
       <div className="home__image">
         <Company className="company" />

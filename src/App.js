@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Header from './components/Header';
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
   useEffect(() => {
@@ -11,9 +13,9 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        {/* <Route path="/signup" component={SignUp} /> */}
-        {/* <Route path="/signin" component={SignIn} />
-          <Route path="/logout" component={Logout} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        {/*  <Route path="/logout" component={Logout} />
           <Route path="/profile" component={Profile} />
           <Route path="/bugdetails" component={BugDetails} />
           <Route path="/teamdetails" component={TeamDetails} /> */}

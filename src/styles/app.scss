@@ -1,6 +1,8 @@
 @import '_header';
 @import '_variables';
 @import '_home';
+@import '_dropdown';
+@import '_register';
 html {
   font-size: 100%;
 }
@@ -9,16 +11,19 @@ html {
   --background-color: #{$white};
   --text-color: #{$black};
   --secondary-color: #{$light-blue};
-  --primary-color:#{$blue};
-  --inverted-text-color:#{$white};
+  --tertiary-color: #{$white};
+  --primary-color: #{$blue};
+  --inverted-text-color: #{$white};
+  
 }
 
 .dark {
   --background-color: #{$purple-300};
   --text-color: #{$white};
   --secondary-color: #{$purple-200};
-  --primary-color:#{$yellow};
-  --inverted-text-color:#{$black};
+  --tertiary-color: #{$purple-100};
+  --primary-color: #{$yellow};
+  --inverted-text-color: #{$black};
 }
 body {
   background-color: var(--background-color);
@@ -26,7 +31,7 @@ body {
   font-weight: 400;
   line-height: 1.75;
   color: var(--text-color);
-  padding: 2em 5em;
+  padding: 2em 3em;
 }
 
 p {
@@ -68,4 +73,15 @@ h5 {
 small,
 .text_small {
   font-size: 0.8rem;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 2em 1em;
+  }
+}
+@media only screen and (max-width: 900px) {
+  body {
+    padding: 2em 1em;
+  }
 }

@@ -1,0 +1,41 @@
+@import '_mixins';
+@import '_variables';
+.form__container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    .form__body {
+      border-radius: 10px;
+      border: 1px solid #696767;
+      padding: 2em 3em;
+      p {
+        font-size: 1.5em;
+        text-align: center;
+      }
+      .form-group {
+        .label {
+          font-size: 16px;
+        }
+        .form-control {
+          border-radius: 2px;
+          border: 1px solid var(--primary-color);
+          background-color: var(--tertiary-color);
+          color: var(--text-color);
+        }
+        .form-control:focus {
+          box-shadow: none;
+        }
+      }
+      .form__btn {
+        @include btn(var(--primary-color), var(--inverted-text-color));
+        width: 100%;
+        margin-top: 25px;
+      }
+    }
+  }
+}
