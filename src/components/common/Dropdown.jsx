@@ -22,22 +22,16 @@ function DropDown() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu variant="secondary">
-        <Dropdown.Item>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            Home
-          </Link>
+        <Dropdown.Item as={Link} to="/">
+          Home
         </Dropdown.Item>
 
-        <Dropdown.Item>
-          <Link to="/register" style={{ textDecoration: 'none' }}>
-            Register
-          </Link>
+        <Dropdown.Item as={Link} to="/register">
+          Register
         </Dropdown.Item>
 
-        <Dropdown.Item>
-          <Link to="/login" style={{ textDecoration: 'none' }}>
-            Login
-          </Link>
+        <Dropdown.Item as={Link} to="/login">
+          Login
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
