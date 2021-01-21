@@ -1,0 +1,7 @@
+$sidebar-bg-color: var(--secondary-color);
+$submenu-bg-color: var(--secondary-color);
+$sidebar-color: var(--text-color);
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover {
+  color: black !important;
+}
+@import '~react-pro-sidebar/dist/scss/styles.scss';

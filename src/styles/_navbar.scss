@@ -1,4 +1,17 @@
 .navbar__container {
   display: flex;
   padding: 0.7em 1em;
+  .btn-toggle {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar__container {
+    display: flex;
+    padding: 0.7em 1em;
+    .btn-toggle {
+      display: inline;
+    }
+  }
 }

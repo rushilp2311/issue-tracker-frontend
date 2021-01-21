@@ -1,12 +1,5 @@
 .dashboard__container {
+  display: flex;
+
   height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  grid-template-rows: 8% 82% 10%;
-  gap: 0px 0px;
-  grid-template-areas:
-    'sidebar__container main__container'
-    'sidebar__container main__container'
-    'sidebar__container main__container';
 }

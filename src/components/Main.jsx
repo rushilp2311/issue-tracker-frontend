@@ -1,10 +1,11 @@
 import React from 'react';
+
 import Navbar from './Navbar';
 
-function Main() {
+function Main({ handleToggleSidebar }) {
   return (
     <div className="main__container">
-      <Navbar />
+      <Navbar handleToggleSidebar={handleToggleSidebar} />
     </div>
   );
 }
