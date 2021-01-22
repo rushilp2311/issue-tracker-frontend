@@ -1,5 +1,6 @@
-.main_container {
-  grid-area: main_container;
-  width: 100%;
-  
+.app.dashboar__container {
+  .main_container {
+    background-color: blue;
+    width: 100% !important;
+  }
 }

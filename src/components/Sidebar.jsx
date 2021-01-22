@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ProSidebar,
@@ -6,12 +6,32 @@ import {
   SidebarFooter,
   SidebarContent,
   MenuItem,
-  SubMenu,
   Menu,
 } from 'react-pro-sidebar';
+
 import { ReactComponent as HomeSVG } from '../assets/home.svg';
+import { ReactComponent as LaptopSVG } from '../assets/laptop.svg';
+import { ReactComponent as RocketSVG } from '../assets/rocket.svg';
+import { ReactComponent as DashboardSVG } from '../assets/dashboard-interface.svg';
+import { ReactComponent as UserSVG } from '../assets/user.svg';
+import { authService } from '../services';
 
 function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
+  const [activeItem, setActiveItem] = useState(
+    +localStorage.getItem('currentPage')
+  );
+  useEffect(() => {
+    document.getElementById(1).classList.remove('active');
+    document.getElementById(activeItem).classList.add('active');
+  }, []);
+  const user = authService.getCurrentUser();
+  const handleClick = (item) => {
+    document.getElementById(activeItem).classList.remove('active');
+    document.getElementById(item).classList.add('active');
+    localStorage.setItem('currentPage', item);
+    setActiveItem(item);
+  };
+
   return (
     <ProSidebar
       collapsed={collapsed}
@@ -26,40 +46,84 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="team">
-        <h5>You are the admin</h5>
+      <SidebarContent>
+        <h5 className="team">You are the admin</h5>
+
         <Menu className="list">
-          <MenuItem className="list__item">Hello</MenuItem>
-          <MenuItem className="list__item">Issues</MenuItem>
+          <MenuItem
+            className="list__item active"
+            onClick={() => handleClick(1)}
+            id={1}
+          >
+            <p>
+              <span>
+                <HomeSVG className="image" />
+              </span>
+              <Link to="/">Home</Link>
+            </p>
+          </MenuItem>
+          {user.is_admin ? (
+            <MenuItem
+              className="list__item"
+              onClick={() => handleClick(2)}
+              id={2}
+            >
+              <p>
+                <span>
+                  <RocketSVG className="image" />
+                </span>
+                <Link to="/projects">Projects</Link>
+              </p>
+            </MenuItem>
+          ) : (
+            <MenuItem
+              className="list__item"
+              onClick={() => handleClick(2)}
+              id={2}
+            >
+              <p>
+                <span>
+                  <LaptopSVG className="image" />
+                </span>
+                <Link to="/issues">Issues</Link>
+              </p>
+            </MenuItem>
+          )}
+          <MenuItem
+            className="list__item"
+            onClick={() => handleClick(3)}
+            id={3}
+          >
+            <p>
+              <span>
+                <DashboardSVG className="image" />
+              </span>
+              <Link to="/dashboard">Dashboard</Link>
+            </p>
+          </MenuItem>
+          {user.is_admin ? (
+            <MenuItem
+              className="list__item"
+              onClick={() => handleClick(4)}
+              id={4}
+            >
+              <p>
+                <span>
+                  <UserSVG className="image" />
+                </span>
+                <Link to="/members">Members</Link>
+              </p>
+            </MenuItem>
+          ) : null}
         </Menu>
       </SidebarContent>
 
       <SidebarFooter style={{ textAlign: 'center' }}>
-        <div className="profile">
+        <div className="settings">
           <Link to="/logout">Logout</Link>
         </div>
       </SidebarFooter>
     </ProSidebar>
-    // <div className="sidebar__container">
-    //   <div className="sidebar__heading">
-    //     <h3>Company</h3>
-    //   </div>
-    //   <div className="team">
-    //     <h5>You are the admin</h5>
-
-    //     <ul className="list">
-    //       <li className="list__item">
-    //         <span>
-    //           <HomeSVG throwIfNamespace={false} className="image" />
-    //         </span>
-    //         Home
-    //       </li>
-    //     </ul>
-    //   </div>
-    //   <div className="profile">
-    //     <Link to="/logout">Logout</Link>
-    //   </div>
-    // </div>
   );
 }
 

@@ -18,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      {currentUser && <Home />}
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
@@ -26,7 +27,6 @@ function App() {
           <Route path="/bugdetails" component={BugDetails} />
           <Route path="/teamdetails" component={TeamDetails} /> */}
         {!currentUser && <Route exact path="/" component={LandingPage} />}
-        {currentUser && <Route exact path="/" component={Home} />}
         {/* <Route path="" component={NotFound} /> */}
       </Switch>
     </div>

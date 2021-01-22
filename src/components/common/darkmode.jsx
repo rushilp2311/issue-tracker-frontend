@@ -15,11 +15,7 @@ function DarkMode() {
     setMode(() => !mode);
   };
   return (
-    <div
-      className="toggle"
-      onClick={onClickHandler}
-      // style={{ background: mode ? 'white' : 'black' }}
-    >
+    <div className="toggle" onClick={onClickHandler}>
       <span>{mode ? '🌞' : '🌙'}</span>
     </div>
   );

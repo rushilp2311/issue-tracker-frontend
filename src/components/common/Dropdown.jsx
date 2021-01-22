@@ -22,7 +22,7 @@ function DropDown() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu variant="secondary">
-        <Dropdown.Item as={Link} to="/">
+        <Dropdown.Item as={Link} to="/" className="dropdown-item">
           Home
         </Dropdown.Item>
 

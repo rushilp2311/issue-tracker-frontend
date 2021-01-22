@@ -4,21 +4,21 @@ import { ReactComponent as Company } from '../assets/company.svg';
 
 function LandingPage() {
   return (
-    <div className="home__container">
-      <div className="home__heading">
+    <div className="landingpage__container">
+      <div className="landingpage__heading">
         <h1>
           Manage all you <span>issues</span>
         </h1>
       </div>
-      <div className="home__subheading">
+      <div className="landingpage__subheading">
         <h1>Collaborate with your Team</h1>
       </div>
-      <div className="home__btn">
+      <div className="landingpage__btn">
         <Link to="/register">
           <button className="btn">Join Now</button>
         </Link>
       </div>
-      <div className="home__image">
+      <div className="landingpage__image">
         <Company className="company" />
       </div>
     </div>

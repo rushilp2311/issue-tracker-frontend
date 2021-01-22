@@ -3,21 +3,10 @@ import Main from './Main';
 import Sidebar from './Sidebar';
 
 function Home() {
-  const [rtl, setRtl] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
-  const [image, setImage] = useState(true);
+  const [rtl] = useState(false);
+  const [collapsed] = useState(false);
+  const [image] = useState(true);
   const [toggled, setToggled] = useState(false);
-
-  const handleCollapsedChange = (checked) => {
-    setCollapsed(checked);
-  };
-
-  const handleRtlChange = (checked) => {
-    setRtl(checked);
-  };
-  const handleImageChange = (checked) => {
-    setImage(checked);
-  };
 
   const handleToggleSidebar = (value) => {
     setToggled(value);
@@ -27,7 +16,7 @@ function Home() {
     <div
       className={`app ${rtl ? 'rtl' : ''} ${
         toggled ? 'toggled' : ''
-      } dashboard__container`}
+      } home__container`}
     >
       <Sidebar
         image={image}

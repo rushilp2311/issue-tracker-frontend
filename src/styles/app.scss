@@ -1,14 +1,15 @@
 @import '_custom';
 @import '_header';
 @import '_variables';
-@import '_home';
+@import '_landingpage';
 @import '_dropdown';
 @import '_register';
 @import '_darkmode';
 @import '_sidebar';
-@import '_dashboard';
+@import '_home';
 @import '_main';
 @import '_navbar';
+@import '_members';
 
 html {
   font-size: 100%;
@@ -22,6 +23,15 @@ html {
   --tertiary-color: #{$white};
   --primary-color: #{$blue};
   --inverted-text-color: #{$white};
+  --list-bg-color: #{$blue};
+  --base-size: 1em;
+  --type-scale: 1.25;
+  --h5: calc(var(--base-size) * var(--type-scale));
+  --h4: calc(var(--h5) * var(--type-scale));
+  --h3: calc(var(--h4) * var(--type-scale));
+  --h2: calc(var(--h3) * var(--type-scale));
+  --h1: calc(var(--h2) * var(--type-scale));
+  --small: calc(var(--base-size) / var(--type-scale));
 }
 
 .dark {
@@ -31,6 +41,15 @@ html {
   --tertiary-color: #{$purple-100};
   --primary-color: #{$yellow};
   --inverted-text-color: #{$black};
+  --list-bg-color: #{$purple-300};
+  --base-size: 1em;
+  --type-scale: 1.25;
+  --h5: calc(var(--base-size) * var(--type-scale));
+  --h4: calc(var(--h5) * var(--type-scale));
+  --h3: calc(var(--h4) * var(--type-scale));
+  --h2: calc(var(--h3) * var(--type-scale));
+  --h1: calc(var(--h2) * var(--type-scale));
+  --small: calc(var(--base-size) / var(--type-scale));
 }
 body {
   background-color: var(--background-color);
@@ -42,7 +61,7 @@ body {
 }
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 h1,
@@ -58,26 +77,35 @@ h5 {
 
 h1 {
   margin-top: 0;
-  font-size: 3.052rem;
+  font-size: var(--h1);
 }
 
 h2 {
-  font-size: 2.441rem;
+  font-size: var(--h2);
 }
 
 h3 {
-  font-size: 1.953rem;
+  font-size: var(--h3);
 }
 
 h4 {
-  font-size: 1.563rem;
+  font-size: var(--h4);
 }
 
 h5 {
-  font-size: 1.25rem;
+  font-size: var(--h5);
 }
 
 small,
 .text_small {
-  font-size: 0.8rem;
+  font-size: var(--small);
+}
+
+@media only screen and (max-width: 600px) {
+  :root {
+    --type-scale: 1.1;
+  }
+  .dark {
+    --type-scale: 1.1;
+  }
 }

@@ -1,69 +1,68 @@
-#dropdown-basic::after {
-  display: none;
-  border: none;
-}
-.dropdown-toggle:focus {
-  box-shadow: none;
-  border: none;
-}
-.myaccount {
-  background-color: var(--secondary-color);
-  width: auto;
-  padding: 10px 15px;
-  border-radius: 4px;
-  border: 0;
-  display: flex;
-  justify-content: space-between;
-  color: var(--text-color);
-
-  span {
-    .user {
-      height: 25px;
-      width: 25px;
-      margin-right: 10px;
-    }
-    .arrow {
-      height: 10px;
-      width: 10px;
-      margin-left: 5px;
-    }
-    path {
-      fill: var(--text-color) !important;
-    }
+.dropdown {
+  #dropdown-basic::after {
+    display: none;
+    border: none;
   }
-}
-.btn-secondary:hover {
-  background: var(--secondary-color);
-  color: var(--text-color);
-}
-.btn-secondary:focus {
-  background: var(--secondary-color);
-  color: var(--text-color);
-}
-
-.show > .btn-secondary.dropdown-toggle {
-  background: var(--secondary-color);
-  color: var(--text-color);
-}
-
-.dropdown-menu {
-  background-color: var(--secondary-color);
-  text-align: center;
-  .dropdown-item {
-    a {
-      color: var(--text-color);
-    }
+  .dropdown-toggle:focus {
+    box-shadow: none;
+    border: none;
   }
-  .dropdown-item:hover {
-    a {
-      color: $black;
-    }
-  }
-  .dropdown-item:active {
+  .myaccount {
     background-color: var(--secondary-color);
+    width: auto;
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 0;
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-color) !important;
+
+    span {
+      .user {
+        height: 25px;
+        width: 25px;
+        margin-right: 10px;
+      }
+      .arrow {
+        height: 10px;
+        width: 10px;
+        margin-left: 5px;
+      }
+      path {
+        fill: var(--text-color) !important;
+      }
+    }
+  }
+  .btn-secondary:hover {
+    background: var(--secondary-color);
     color: var(--text-color);
   }
-  width: 100%;
+  .btn-secondary:focus {
+    background: var(--secondary-color);
+    color: var(--text-color);
+  }
+
+  .show > .btn-secondary.dropdown-toggle {
+    background: var(--secondary-color);
+    color: var(--text-color);
+  }
+  .dropdown-menu {
+    background-color: var(--secondary-color);
+    text-align: center;
+    .dropdown-item {
+      color: var(--text-color) !important;
+    }
+    .dropdown-item:hover {
+      a {
+        color: $black;
+      }
+    }
+    .dropdown-item:active {
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+    }
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 600px) {
