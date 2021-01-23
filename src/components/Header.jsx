@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { authService } from '../services';
-import DropDown from './common/Dropdown';
+import DropDown from './common/dropdown';
 import DarkMode from './common/darkmode';
 
 function Header() {

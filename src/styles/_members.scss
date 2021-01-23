@@ -1,7 +1,7 @@
 @import '_mixins';
 .members__container {
+  padding: 1.5em 3em;
   .members__heading {
-    padding: 1.5em 3em;
     display: flex;
     justify-content: space-between;
     .members__title {
@@ -9,7 +9,9 @@
     .members__btn {
       .members__register__btn {
         @include btn(var(--primary-color), var(--inverted-text-color));
-        padding: 10px;
+        padding: 5px 20px;
+        border-radius: 4px;
+        font-size: 16px;
       }
     }
   }
@@ -17,8 +19,8 @@
 
 @media only screen and (max-width: 600px) {
   .members__container {
+    padding: 1em;
     .members__heading {
-      padding: 1em;
       .members__btn {
         .members__register__btn {
           padding: 5px 15px;
