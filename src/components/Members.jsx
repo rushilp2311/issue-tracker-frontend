@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { memberService } from '../services';
 import MemberList from './common/memberlist';
+import RegisterMember from './modals/RegisterMember';
 
 function Members() {
   const [memberList, setMemberList] = useState([]);
@@ -19,7 +20,7 @@ function Members() {
           <h4>Members</h4>
         </div>
         <div className="members__btn">
-          <button className="members__register__btn">Register Member</button>
+          <RegisterMember />
         </div>
       </div>
       <div className="members__list">

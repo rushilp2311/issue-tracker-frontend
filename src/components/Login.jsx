@@ -38,8 +38,18 @@ class Login extends Form {
         <form onSubmit={this.handleSubmit}>
           <div className="form__body">
             <p>Login into your account</p>
-            {this.renderInput('email', "What's your email?")}
-            {this.renderInput('password', 'Create a Password', 'password')}
+            {this.renderInput(
+              'email',
+              "What's your email?",
+              'text',
+              'Enter your email'
+            )}
+            {this.renderInput(
+              'password',
+              'Create a Password',
+              'password',
+              'Enter your password'
+            )}
             {this.renderButton('Login')}
           </div>
         </form>

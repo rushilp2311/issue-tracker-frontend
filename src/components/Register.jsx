@@ -43,11 +43,36 @@ class Register extends Form {
         <form onSubmit={this.handleSubmit}>
           <div className="form__body">
             <p>Create your Company's account</p>
-            {this.renderInput('name', "What's your name?")}
-            {this.renderInput('email', "What's your email?")}
-            {this.renderInput('company_id', 'Give your company id.')}
-            {this.renderInput('company_name', "What's your Company Name?")}
-            {this.renderInput('password', 'Create a Password', 'password')}
+            {this.renderInput(
+              'name',
+              "What's your name?",
+              'text',
+              'Enter your name'
+            )}
+            {this.renderInput(
+              'email',
+              "What's your email?",
+              'text',
+              'Enter your email'
+            )}
+            {this.renderInput(
+              'company_id',
+              'Give your company id.',
+              'text',
+              'Give an unique Id for your Company'
+            )}
+            {this.renderInput(
+              'company_name',
+              "What's your Company Name?",
+              'text',
+              "Give your company's name"
+            )}
+            {this.renderInput(
+              'password',
+              'Create a Password',
+              'password',
+              'Enter your password (Min. length 6)'
+            )}
             {this.renderButton('Register')}
           </div>
         </form>

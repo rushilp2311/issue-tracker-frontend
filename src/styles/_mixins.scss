@@ -5,14 +5,14 @@
   border: 0;
   font-size: 18px;
   padding: 10px 20px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 @mixin secondary-btn($bgcolor, $color, $bordercolor) {
   background-color: $bgcolor;
   color: $color;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 5px 12px;
   border: 1px solid $bordercolor;
   transition-duration: 0.4s;
