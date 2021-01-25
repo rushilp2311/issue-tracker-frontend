@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Main from './Main';
 import Sidebar from './Sidebar';
 
@@ -11,6 +11,12 @@ function Home() {
   const handleToggleSidebar = (value) => {
     setToggled(value);
   };
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('currentPage');
+    };
+  }, []);
 
   return (
     <div

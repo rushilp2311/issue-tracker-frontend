@@ -48,6 +48,13 @@
   }
   .modal__body {
     text-align: left;
+    .form__container {
+      form {
+        .form__body {
+          border: none;
+        }
+      }
+    }
     .noError {
       display: none;
     }

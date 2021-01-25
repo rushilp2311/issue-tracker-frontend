@@ -20,6 +20,7 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
   const [activeItem, setActiveItem] = useState(
     () => localStorage.getItem('currentPage') || 'home'
   );
+
   useEffect(() => {
     document.getElementById(activeItem).classList.add('active');
   }, [activeItem]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { memberService } from '../services';
+import { memberService, authService } from '../services';
 import MemberList from './common/memberlist';
 import RegisterMember from './modals/RegisterMember';
 
@@ -7,8 +7,9 @@ function Members() {
   const [memberList, setMemberList] = useState([]);
   useEffect(() => {
     async function getMembersList() {
-      // TODO: Only get members of same company.
-      const result = await memberService.getAllMembers();
+      const result = await memberService.getAllMembers(
+        authService.getCurrentUser().company_id
+      );
       setMemberList(result.data);
     }
     getMembersList();
