@@ -7,6 +7,7 @@ function Members() {
   const [memberList, setMemberList] = useState([]);
   useEffect(() => {
     async function getMembersList() {
+      // TODO: Only get members of same company.
       const result = await memberService.getAllMembers();
       setMemberList(result.data);
     }

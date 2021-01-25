@@ -31,14 +31,23 @@
 }
 
 .modal__container {
-  width: 400px;
-  height: 300px;
+  min-height: 300px;
   padding: 10px 20px;
-  .modal__header {
-    border-bottom: 1px solid rgb(197, 197, 211);
+  .modal__close {
+    display: flex;
+    justify-content: flex-end;
+    .image {
+      height: 20px;
+      width: 20px;
+      fill: var(--text-color);
+      cursor: pointer;
+    }
+    .image:hover {
+      fill: $red;
+    }
   }
   .modal__body {
-    margin-top: 30px;
+    text-align: left;
     .noError {
       display: none;
     }
@@ -47,12 +56,10 @@
       color: $red;
       font-size: 16px;
     }
-    
   }
-  //Mixin
   button {
     @include btn($red, $white);
-    min-width: 100px;
+    min-width: 200px;
     margin-top: 50px;
   }
 }
@@ -68,9 +75,7 @@
   }
 
   .modal__container {
-    width: 100%;
     .modal__body {
-      margin-top: 30px;
       .modal__form__controls {
         flex-direction: column;
         align-items: center;

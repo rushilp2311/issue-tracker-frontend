@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import Joi from 'joi';
-import Form from './common/form';
+import Form from './common/forms/form';
 import { authService } from '../services';
 
 class Login extends Form {

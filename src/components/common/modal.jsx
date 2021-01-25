@@ -14,7 +14,7 @@ const Modal = ({ children }) => {
     return () => modalRoot.removeChild(elRef.current);
   }, []);
   // eslint-disable-next-line react/jsx-filename-extension
-  return createPortal(<div>{children}</div>, elRef.current);
+  return createPortal(<>{children}</>, elRef.current);
 };
 
 export default Modal;

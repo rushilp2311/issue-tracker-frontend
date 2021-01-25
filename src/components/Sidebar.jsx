@@ -21,14 +21,12 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
     () => localStorage.getItem('currentPage') || 'home'
   );
   useEffect(() => {
-    console.log(activeItem);
     document.getElementById(activeItem).classList.add('active');
   }, [activeItem]);
 
   const user = authService.getCurrentUser();
 
   const handleClick = (item) => {
-    console.log(item, activeItem);
     document.getElementById(activeItem).classList.remove('active');
     document.getElementById(item).classList.add('active');
     localStorage.setItem('currentPage', item);

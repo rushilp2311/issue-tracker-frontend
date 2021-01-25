@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import Joi from 'joi';
-import Form from './common/form';
+import Form from './common/forms/form';
+import { adminService, authService } from '../services';
 
 class Register extends Form {
   state = {
@@ -24,17 +25,18 @@ class Register extends Form {
   };
 
   doSubmit = async () => {
-    // try {
-    //   const response = await userService.register(this.state.data);
-    //   authService.loginWithJwt(response.headers['x-auth-token']);
-    //   window.location = '/';
-    // } catch (ex) {
-    //   if (ex.response && ex.response.status === 400) {
-    //     const errors = { ...this.state.errors };
-    //     errors.email = ex.response.data;
-    //     this.setState({ errors });
-    //   }
-    // }
+    try {
+      const response = await adminService.registerAdmin(this.state.data);
+      console.log(response);
+      authService.loginWithJwt(response.headers['x-auth-token']);
+      window.location = '/';
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.email = ex.response.data;
+        this.setState({ errors });
+      }
+    }
   };
 
   render() {
