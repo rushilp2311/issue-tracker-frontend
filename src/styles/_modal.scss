@@ -21,7 +21,7 @@
   background-color: var(--secondary-color);
   max-width: 500px;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 2px;
   text-align: center;
 }
 
@@ -51,6 +51,7 @@
     .form__container {
       form {
         .form__body {
+          padding: 0px 30px;
           border: none;
         }
       }
@@ -68,6 +69,7 @@
     @include btn($red, $white);
     min-width: 200px;
     margin-top: 50px;
+    margin-bottom: 10px;
   }
 }
 

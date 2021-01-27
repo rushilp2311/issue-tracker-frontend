@@ -1,13 +1,11 @@
 @import '_mixins';
-.members__container {
+.projects__container {
   padding: 1.5em 3em;
-  .members__heading {
+  .projects__heading {
     display: flex;
     justify-content: space-between;
-    .members__title {
-    }
-    .members__btn {
-      .members__register__btn {
+    .projects__btn {
+      .projects__register__btn {
         @include btn(var(--primary-color), var(--inverted-text-color));
         padding: 5px 20px;
         font-size: 16px;
@@ -17,11 +15,11 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .members__container {
+  .projects__container {
     padding: 1em;
-    .members__heading {
-      .members__btn {
-        .members__register__btn {
+    .projects__heading {
+      .projects__btn {
+        .projects__register__btn {
           padding: 5px 15px;
           font-size: 14px;
         }
