@@ -52,20 +52,37 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
         <h5 className="team">You are the admin</h5>
 
         <ul className="list">
-          <Link to="/">
-            <li
-              className="list__item "
-              id="home"
-              onClick={() => handleClick('home')}
-            >
-              <p>
-                <span>
-                  <HomeSVG className="image" />
-                </span>
-                Home
-              </p>
-            </li>
-          </Link>
+          {user.is_admin ? (
+            <Link to="/">
+              <li
+                className="list__item "
+                id="home"
+                onClick={() => handleClick('home')}
+              >
+                <p>
+                  <span>
+                    <HomeSVG className="image" />
+                  </span>
+                  Home
+                </p>
+              </li>
+            </Link>
+          ) : (
+            <Link to="/dashboard">
+              <li
+                className="list__item"
+                id="dashboard"
+                onClick={() => handleClick('dashboard')}
+              >
+                <p>
+                  <span>
+                    <DashboardSVG className="image" />
+                  </span>
+                  Dashboard
+                </p>
+              </li>
+            </Link>
+          )}
           {user.is_admin ? (
             <Link to="/projects">
               <li
@@ -97,20 +114,6 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
               </li>
             </Link>
           )}
-          <Link to="/dashboard">
-            <li
-              className="list__item"
-              id="dashboard"
-              onClick={() => handleClick('dashboard')}
-            >
-              <p>
-                <span>
-                  <DashboardSVG className="image" />
-                </span>
-                Dashboard
-              </p>
-            </li>
-          </Link>
           <Link to="/members">
             <li
               className="list__item"

@@ -25,6 +25,8 @@ body {
   --primary-color: #{$blue};
   --inverted-text-color: #{$white};
   --list-bg-color: #{$blue};
+  --disabled-text-color: #{$darkgray};
+  --disabled-bg-color: #{$gray};
   --base-size: 1em;
   --type-scale: 1.25;
   --h5: calc(var(--base-size) * var(--type-scale));
@@ -43,6 +45,8 @@ body {
   --primary-color: #{$yellow};
   --inverted-text-color: #{$black};
   --list-bg-color: #{$purple-300};
+  --disabled-text-color: #{$gray};
+  --disabled-bg-color: #{$darkgray};
   --base-size: 1em;
   --type-scale: 1.25;
   --h5: calc(var(--base-size) * var(--type-scale));
@@ -59,6 +63,7 @@ body {
   line-height: 1.75;
   color: var(--text-color);
   height: 100vh;
+  scrollbar-width: thin;
 }
 
 p {

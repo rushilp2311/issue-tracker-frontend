@@ -23,7 +23,7 @@ function RegisterMember() {
               <h3>Register Member</h3>
             </div>
             <div className="modal__body">
-              <MemberRegistrationForm />
+              <MemberRegistrationForm setShowModal={setShowModal} />
             </div>
           </div>
         </Modal>

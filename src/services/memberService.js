@@ -11,6 +11,11 @@ export async function getAllMembers(company) {
   return result;
 }
 
+export async function registerMember(member) {
+  const result = await http.post(`${apiEndpoint}/registermember`, member);
+  return result;
+}
+
 export default {
   getAllMembers,
 };
