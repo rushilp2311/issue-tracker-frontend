@@ -2,26 +2,22 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  ProSidebar,
-  SidebarHeader,
-  SidebarFooter,
-  SidebarContent,
-} from 'react-pro-sidebar';
+import { ProSidebar, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
 
-import { ReactComponent as HomeSVG } from '../assets/home.svg';
 import { ReactComponent as LaptopSVG } from '../assets/laptop.svg';
 import { ReactComponent as RocketSVG } from '../assets/rocket.svg';
 import { ReactComponent as DashboardSVG } from '../assets/dashboard-interface.svg';
-import { ReactComponent as UserSVG } from '../assets/user.svg';
+import { ReactComponent as UsersSVG } from '../assets/users.svg';
+import { ReactComponent as SprintSVG } from '../assets/sprint.svg';
 import { authService } from '../services';
 
 function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
   const [activeItem, setActiveItem] = useState(
-    () => localStorage.getItem('currentPage') || 'home'
+    () => localStorage.getItem('currentPage') || 'dashboard'
   );
 
   useEffect(() => {
+    console.log(activeItem);
     document.getElementById(activeItem).classList.add('active');
   }, [activeItem]);
 
@@ -49,38 +45,9 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
       </SidebarHeader>
 
       <SidebarContent>
+        {/* Add Project Details */}
+
         <ul className="list">
-          {user.is_admin ? (
-            <Link to="/">
-              <li
-                className="list__item "
-                id="home"
-                onClick={() => handleClick('home')}
-              >
-                <p>
-                  <span>
-                    <HomeSVG className="image" />
-                  </span>
-                  Home
-                </p>
-              </li>
-            </Link>
-          ) : (
-            <Link to="/dashboard">
-              <li
-                className="list__item"
-                id="dashboard"
-                onClick={() => handleClick('dashboard')}
-              >
-                <p>
-                  <span>
-                    <DashboardSVG className="image" />
-                  </span>
-                  Dashboard
-                </p>
-              </li>
-            </Link>
-          )}
           {user.is_admin ? (
             <Link to="/projects">
               <li
@@ -112,28 +79,55 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
               </li>
             </Link>
           )}
-          <Link to="/members">
+          <Link to="/dashboard">
             <li
               className="list__item"
-              id="members"
-              onClick={() => handleClick('members')}
+              id="dashboard"
+              onClick={() => handleClick('dashboard')}
             >
               <p>
                 <span>
-                  <UserSVG className="image" />
+                  <DashboardSVG className="image" />
                 </span>
-                Members
+                Dashboard
               </p>
             </li>
           </Link>
+
+          {user.is_admin ? (
+            <Link to="/members">
+              <li
+                className="list__item"
+                id="members"
+                onClick={() => handleClick('members')}
+              >
+                <p>
+                  <span>
+                    <UsersSVG className="image" />
+                  </span>
+                  Members
+                </p>
+              </li>
+            </Link>
+          ) : null}
+          {!user.is_admin ? (
+            <Link to="/sprint">
+              <li
+                className="list__item"
+                id="sprint"
+                onClick={() => handleClick('sprint')}
+              >
+                <p>
+                  <span>
+                    <SprintSVG className="image" />
+                  </span>
+                  Sprint
+                </p>
+              </li>
+            </Link>
+          ) : null}
         </ul>
       </SidebarContent>
-
-      <SidebarFooter style={{ textAlign: 'center' }}>
-        <div className="settings">
-          <Link to="/logout">Logout</Link>
-        </div>
-      </SidebarFooter>
     </ProSidebar>
   );
 }

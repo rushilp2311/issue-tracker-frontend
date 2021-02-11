@@ -1,5 +1,5 @@
 .navbar {
-  height: 62px;
+  height: 62.5px;
   flex-wrap: nowrap;
   padding: 0em 1em;
   border-bottom: 1px solid rgb(168, 167, 167);
@@ -8,30 +8,74 @@
   }
   .navbar__container {
     width: 100% !important;
+    height: auto;
     display: flex;
-    justify-content: space-between;
-    padding: 0.33em 2em;
+    justify-content: flex-end;
     align-items: center;
-    .project {
-      margin-left: 0px;
-    }
+    padding: 0.33em 0em 0em 2em;
+    align-items: center;
     .controls {
       justify-content: flex-end;
       display: flex;
       align-items: center;
-      width: 50%;
+      width: 20%;
       .image {
-        margin-right: 10px;
+        cursor: pointer;
+        margin-right: 20px;
         height: 20px;
         width: 20px;
         fill: var(--text-color);
       }
       .account {
+        min-width: 130px;
+        margin-left: 15px;
+        position: relative;
+        cursor: pointer;
         .profile {
           height: 30px;
           width: 30px;
           border-radius: 6px;
-          margin-right: 20px;
+          margin-right: 10px;
+        }
+      }
+      .account__menu {
+        position: absolute;
+        height: 170px;
+        min-width: 20%;
+        top: 105%;
+        padding: 10px;
+        z-index: 100;
+        background-color: var(--secondary-color);
+        border: 1px solid var(--disabled-bg-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-radius: 4px;
+        .menu__item {
+          cursor: pointer;
+          padding: 5px;
+          border-bottom: 1px solid var(--disabled-bg-color);
+        }
+        .settings {
+          height: auto;
+
+          border-radius: 4px;
+          width: 100%;
+          display: flex;
+          a {
+            padding: 5px;
+            width: 100%;
+            color: var(--text-color);
+          }
+        }
+        .settings:hover {
+          background-color: $red;
+          a {
+            color: $white;
+            svg {
+              fill: white;
+            }
+          }
         }
       }
     }
@@ -48,7 +92,16 @@
     }
     .navbar__container {
       display: flex;
-      padding: 0.3em 1em;
+      height: 100%;
+      padding: 0.33em 0em 0em 1em;
+      .controls {
+        width: 400px;
+      }
+      .settings {
+        a {
+          padding: 5px;
+        }
+      }
     }
   }
 }
