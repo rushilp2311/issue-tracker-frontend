@@ -49,8 +49,6 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
       </SidebarHeader>
 
       <SidebarContent>
-        <h5 className="team">You are the admin</h5>
-
         <ul className="list">
           {user.is_admin ? (
             <Link to="/">

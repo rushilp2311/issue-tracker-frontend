@@ -5,6 +5,7 @@
   text-align: center;
   .landingpage__topcontainer {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     .landingpage__title {

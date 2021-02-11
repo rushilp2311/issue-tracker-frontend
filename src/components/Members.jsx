@@ -7,10 +7,12 @@ function Members() {
   const [memberList, setMemberList] = useState([]);
   useEffect(() => {
     async function getMembersList() {
-      const result = await memberService.getAllMembers(
-        authService.getCurrentUser().company_id
-      );
-      setMemberList(result.data);
+      await memberService
+        .getAllMembers(authService.getCurrentUser().company_id)
+        .then((result) => setMemberList(result.data))
+        .catch((error) => {
+          console.log(error.response.data);
+        });
     }
     getMembersList();
   }, []);
