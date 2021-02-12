@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react';
-import { ReactComponent as Sun } from '../../assets/sun.svg';
-import { ReactComponent as Moon } from '../../assets/moon.svg';
+import { FiMoon, FiSun } from 'react-icons/fi';
 
 function DarkMode() {
   const [mode, setMode] = useState(
@@ -21,7 +20,7 @@ function DarkMode() {
   return (
     <div className="toggle" onClick={onClickHandler}>
       <span>
-        {mode ? <Sun className="image" /> : <Moon className="image" />}
+        {mode ? <FiSun className="image" /> : <FiMoon className="image" />}
       </span>
     </div>
   );

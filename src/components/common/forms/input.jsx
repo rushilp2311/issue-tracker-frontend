@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiAlertTriangle } from 'react-icons/fi';
 
 const Input = ({ name, label, error, placeholder, ...rest }) => {
   return (
@@ -11,9 +12,14 @@ const Input = ({ name, label, error, placeholder, ...rest }) => {
         name={name}
         id={name}
         placeholder={placeholder}
-        className="form-control"
+        className={error ? 'form-control error' : 'form-control'}
       />
-      {error && <div className="alert alert-danger">{error}</div>}
+      {error && (
+        <p className="error-message">
+          <FiAlertTriangle />
+          {error}
+        </p>
+      )}
     </div>
   );
 };

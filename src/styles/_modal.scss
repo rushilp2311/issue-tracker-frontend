@@ -51,7 +51,6 @@
     .form__container {
       form {
         .form__body {
-          padding: 0px 30px;
           border: none;
         }
       }
@@ -88,11 +87,9 @@
       .modal__form__controls {
         flex-direction: column;
         align-items: center;
-
         width: 100%;
         input {
           width: 100%;
-
           margin-bottom: 10px;
         }
         button {

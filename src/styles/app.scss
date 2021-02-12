@@ -22,6 +22,7 @@ body {
   --text-color: #{$black};
   --secondary-color: #{$light-blue};
   --tertiary-color: #{$white};
+  --shadow: rgba(0, 0, 0, 0.25);
   --primary-color: #{$blue};
   --inverted-text-color: #{$white};
   --list-bg-color: #{$blue};
@@ -42,6 +43,7 @@ body {
   --text-color: #{$white};
   --secondary-color: #{$purple-200};
   --tertiary-color: #{$purple-100};
+  --shadow: #{$purple-300};
   --primary-color: #{$yellow};
   --inverted-text-color: #{$black};
   --list-bg-color: #{$purple-300};

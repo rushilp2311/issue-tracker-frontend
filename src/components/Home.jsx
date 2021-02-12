@@ -4,12 +4,15 @@ import Sidebar from './Sidebar';
 
 function Home() {
   const [rtl] = useState(false);
-  const [collapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   const [image] = useState(true);
   const [toggled, setToggled] = useState(false);
 
   const handleToggleSidebar = (value) => {
     setToggled(value);
+  };
+  const handleCollapsedSidebar = (value) => {
+    setCollapsed(value);
   };
 
   useEffect(() => {
@@ -29,9 +32,10 @@ function Home() {
         collapsed={collapsed}
         rtl={rtl}
         toggled={toggled}
+        handleCollapsedSidebar={handleCollapsedSidebar}
         handleToggleSidebar={handleToggleSidebar}
       />
-      <Main handleToggleSidebar={handleToggleSidebar} />
+      <Main />
     </div>
   );
 }

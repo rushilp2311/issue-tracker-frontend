@@ -5,15 +5,16 @@ import Navbar from './Navbar';
 import Members from './Members';
 import Projects from './Projects';
 
-function Main({ handleToggleSidebar }) {
+function Main() {
   return (
     <div className="main__container" style={{ width: '100%' }}>
-      <Navbar handleToggleSidebar={handleToggleSidebar} />
+      <Navbar />
       <div>
         <Switch>
           <Route path="/issues" component={Issues} />
           <Route path="/projects" component={Projects} />
           <Route path="/members" component={Members} />
+          <Route path="/profile" component={Members} />
         </Switch>
       </div>
     </div>

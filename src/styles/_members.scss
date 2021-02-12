@@ -4,16 +4,23 @@
   .members__heading {
     display: flex;
     justify-content: space-between;
-    .members__title {
-    }
     .members__btn {
       .members__register__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .image {
+          height: 1.3em;
+          width: 1.3em;
+          margin-right: 10px;
+        }
         @include btn(var(--primary-color), var(--inverted-text-color));
         padding: 5px 20px;
         font-size: 16px;
       }
     }
   }
+  
 }
 
 @media only screen and (max-width: 600px) {

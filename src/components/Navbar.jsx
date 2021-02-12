@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Bell } from '../assets/bell.svg';
-import { ReactComponent as Logout } from '../assets/logout.svg';
-import { ReactComponent as Help } from '../assets/help.svg';
-import { ReactComponent as Search } from '../assets/search.svg';
-import { ReactComponent as Account } from '../assets/account.svg';
-import { ReactComponent as Settings } from '../assets/settings.svg';
-import { ReactComponent as Arrow } from '../assets/down-arrow.svg';
+import {
+  FiBell,
+  FiSearch,
+  FiLogOut,
+  FiChevronDown,
+  FiSettings,
+  FiUser,
+  FiHelpCircle,
+} from 'react-icons/fi';
+
 import { authService } from '../services';
 import DarkMode from './common/darkmode';
 import Profile from '../assets/profile.jpeg';
 
-function Navbar({ handleToggleSidebar }) {
+function Navbar() {
   const user = authService.getCurrentUser();
   const [showMenu, setShowMenu] = useState('none');
   const handleClick = () => {
@@ -24,44 +26,40 @@ function Navbar({ handleToggleSidebar }) {
   };
   return (
     <div className="navbar">
-      <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
-        <FaBars />
-      </div>
       <div className="navbar__container">
         <div className="controls">
           <span>
-            <Search className="image" />
+            <FiSearch className="image" />
           </span>
           <span>
-            <Bell className="image" />
+            <FiBell className="image" />
           </span>
           <DarkMode />
           <div className="account" onClick={handleClick}>
             <img src={Profile} alt="profile" className="profile" />
             {user.name}
-            <Arrow
-              className="image"
-              style={{ height: '10px', width: '10px', marginLeft: '5px' }}
-            />
+            <FiChevronDown className="image" />
           </div>
           <div className="account__menu" style={{ display: `${showMenu}` }}>
             <h5 className="menu__item">
-              <Account className="image" />
+              <FiUser className="image" />
               Profile
             </h5>
             <h5 className="menu__item">
-              <Settings className="image" />
+              <FiSettings className="image" style={{ marginRight: '13px' }} />{' '}
               Settings
             </h5>
             <h5 className="menu__item">
-              <Help className="image" />
+              <FiHelpCircle className="image" />
               Help
             </h5>
 
             <div className="settings">
               <Link to="/logout">
-                <Logout className="image" />
-                Logout
+                <h5>
+                  <FiLogOut className="image" />
+                  Logout
+                </h5>
               </Link>
             </div>
           </div>

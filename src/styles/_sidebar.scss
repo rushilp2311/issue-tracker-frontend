@@ -2,8 +2,16 @@
 .sidebar__container {
   overflow: auto;
   .sidebar__heading {
+    height: 200px;
     padding: 0.7em 2.2em;
-    border-bottom: 1px solid rgb(168, 167, 167);
+    display: flex;
+    justify-content: space-between;
+    .image {
+      height: 40px;
+      width: 40px;
+      stroke: var(--text-color);
+      // fill: var(--text-color);
+    }
   }
   .team {
     padding: 0.7em 2em;
@@ -21,7 +29,8 @@
               height: 20px;
               width: 20px;
               margin-right: 20px;
-              fill: var(--text-color);
+              stroke: var(--text-color);
+              // fill: var(--text-color);
             }
           }
 
@@ -36,7 +45,7 @@
         p {
           span {
             .image {
-              fill: $white;
+              stroke: $white;
             }
           }
 
@@ -45,8 +54,6 @@
       }
     }
   }
-
-  
 }
 
 .pro-sidebar {

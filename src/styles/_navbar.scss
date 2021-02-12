@@ -2,7 +2,7 @@
   height: 62.5px;
   flex-wrap: nowrap;
   padding: 0em 1em;
-  border-bottom: 1px solid rgb(168, 167, 167);
+  border-bottom: 1px solid $gray;
   .btn-toggle {
     display: none;
   }
@@ -14,18 +14,19 @@
     align-items: center;
     padding: 0.33em 0em 0em 2em;
     align-items: center;
+    .image {
+      cursor: pointer;
+      margin-right: 20px;
+      height: 20px;
+      width: 20px;
+      stroke: var(--text-color);
+    }
     .controls {
       justify-content: flex-end;
       display: flex;
       align-items: center;
       width: 20%;
-      .image {
-        cursor: pointer;
-        margin-right: 20px;
-        height: 20px;
-        width: 20px;
-        fill: var(--text-color);
-      }
+
       .account {
         min-width: 130px;
         margin-left: 15px;
@@ -41,7 +42,7 @@
       .account__menu {
         position: absolute;
         height: 170px;
-        min-width: 20%;
+        min-width: 10%;
         top: 105%;
         padding: 10px;
         z-index: 100;
@@ -51,6 +52,7 @@
         flex-direction: column;
         justify-content: flex-end;
         border-radius: 4px;
+        box-shadow: 0 10px 20px var(--shadow), 0 6px 6px var(--shadow);
         .menu__item {
           cursor: pointer;
           padding: 5px;
@@ -73,7 +75,7 @@
           a {
             color: $white;
             svg {
-              fill: white;
+              stroke: white;
             }
           }
         }

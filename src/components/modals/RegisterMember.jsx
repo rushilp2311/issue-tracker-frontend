@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { FiX, FiUserPlus } from 'react-icons/fi';
 import MemberRegistrationForm from '../common/forms/memberregistration';
 import Modal from '../common/modal';
-import { ReactComponent as Close } from '../../assets/close.svg';
 
 function RegisterMember() {
   const [showModal, setShowModal] = useState(false);
@@ -11,13 +11,17 @@ function RegisterMember() {
   return (
     <>
       <button className="members__register__btn" onClick={handleToggle}>
-        Register Member
+        <FiUserPlus
+          className="image"
+          style={{ marginRight: '10px', height: '20px' }}
+        />{' '}
+        Add Member
       </button>
       {showModal ? (
         <Modal>
           <div className="modal__container">
             <div className="modal__close">
-              <Close className="image" onClick={handleToggle} />
+              <FiX className="image" onClick={handleToggle} />
             </div>
             <div className="modal__header">
               <h3>Register Member</h3>

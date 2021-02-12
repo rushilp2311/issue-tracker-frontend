@@ -3,15 +3,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ProSidebar, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
+import {
+  FiUsers,
+  FiLayout,
+  FiTrello,
+  FiBook,
+  FiChevronsRight,
+  FiChevronsLeft,
+} from 'react-icons/fi';
+import { RiBugLine } from 'react-icons/ri';
 
-import { ReactComponent as LaptopSVG } from '../assets/laptop.svg';
-import { ReactComponent as RocketSVG } from '../assets/rocket.svg';
-import { ReactComponent as DashboardSVG } from '../assets/dashboard-interface.svg';
-import { ReactComponent as UsersSVG } from '../assets/users.svg';
-import { ReactComponent as SprintSVG } from '../assets/sprint.svg';
 import { authService } from '../services';
 
-function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
+function Sidebar({
+  collapsed,
+  toggled,
+  handleToggleSidebar,
+  handleCollapsedSidebar,
+}) {
   const [activeItem, setActiveItem] = useState(
     () => localStorage.getItem('currentPage') || 'dashboard'
   );
@@ -19,7 +28,14 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
   useEffect(() => {
     console.log(activeItem);
     document.getElementById(activeItem).classList.add('active');
+    return () => {
+      localStorage.removeItem('current');
+    };
   }, [activeItem]);
+
+  useEffect(() => {
+    console.log(toggled);
+  }, [toggled, collapsed]);
 
   const user = authService.getCurrentUser();
 
@@ -34,13 +50,24 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
     <ProSidebar
       collapsed={collapsed}
       toggled={toggled}
-      breakPoint="md"
       onToggle={handleToggleSidebar}
       className="sidebar__container"
     >
       <SidebarHeader>
         <div className="sidebar__heading">
-          <h3>Company</h3>
+          {!collapsed && <h3>Company</h3>}
+          <span
+            onClick={() => {
+              handleCollapsedSidebar(!collapsed);
+              handleToggleSidebar(!toggled);
+            }}
+          >
+            {collapsed ? (
+              <FiChevronsRight className="image" />
+            ) : (
+              <FiChevronsLeft className="image" />
+            )}
+          </span>
         </div>
       </SidebarHeader>
 
@@ -57,9 +84,9 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
               >
                 <p>
                   <span>
-                    <RocketSVG className="image" />
+                    <FiTrello className="image" />
                   </span>
-                  Projects
+                  {!collapsed && `Projects`}
                 </p>
               </li>
             </Link>
@@ -72,9 +99,9 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
               >
                 <p>
                   <span>
-                    <LaptopSVG className="image" />
+                    <RiBugLine className="image" />
                   </span>
-                  Issues
+                  {!collapsed && `Issues`}
                 </p>
               </li>
             </Link>
@@ -87,9 +114,9 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
             >
               <p>
                 <span>
-                  <DashboardSVG className="image" />
+                  <FiLayout className="image" />
                 </span>
-                Dashboard
+                {!collapsed && `Dashboard`}
               </p>
             </li>
           </Link>
@@ -103,9 +130,9 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
               >
                 <p>
                   <span>
-                    <UsersSVG className="image" />
+                    <FiUsers className="image" />
                   </span>
-                  Members
+                  {!collapsed && `Members`}
                 </p>
               </li>
             </Link>
@@ -119,7 +146,7 @@ function Sidebar({ collapsed, toggled, handleToggleSidebar }) {
               >
                 <p>
                   <span>
-                    <SprintSVG className="image" />
+                    <FiBook className="image" />
                   </span>
                   Sprint
                 </p>
