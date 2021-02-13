@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FiX, FiUserPlus } from 'react-icons/fi';
 import MemberRegistrationForm from '../common/forms/memberregistration';
 import Modal from '../common/modal';
+import InfoCard from '../common/cards/InfoCard';
 
 function RegisterMember() {
   const [showModal, setShowModal] = useState(false);
@@ -26,6 +27,9 @@ function RegisterMember() {
             <div className="modal__header">
               <h3>Register Member</h3>
             </div>
+            <>
+              <InfoCard text="Email will be send to the member. So please provide valid email." />
+            </>
             <div className="modal__body">
               <MemberRegistrationForm setShowModal={setShowModal} />
             </div>

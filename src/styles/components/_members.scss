@@ -1,4 +1,4 @@
-@import '_mixins';
+@import './utils/_mixins';
 .members__container {
   padding: 1.5em 3em;
   .members__heading {
@@ -20,7 +20,6 @@
       }
     }
   }
-  
 }
 
 @media only screen and (max-width: 600px) {

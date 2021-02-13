@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import { FiEdit } from 'react-icons/fi';
 
 function MemberList({ memberList }) {
   return (
@@ -25,7 +26,10 @@ function MemberList({ memberList }) {
               <td>{member.company_id}</td>
               <td>{member.joining_date.slice(0, 10)}</td>
               <td>{member.last_login || '-'}</td>
-              <td>Edit</td>
+              <td className="edit">
+                <FiEdit className="image" />
+                Edit
+              </td>
             </tr>
           ))}
         </tbody>

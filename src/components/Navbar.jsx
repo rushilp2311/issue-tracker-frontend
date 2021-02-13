@@ -36,7 +36,13 @@ function Navbar() {
           </span>
           <DarkMode />
           <div className="account" onClick={handleClick}>
-            <img src={Profile} alt="profile" className="profile" />
+            <img
+              src={Profile}
+              alt="profile"
+              className="profile"
+              height="30px"
+              width="30px"
+            />
             {user.name}
             <FiChevronDown className="image" />
           </div>

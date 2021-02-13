@@ -24,12 +24,12 @@
         margin-right: 10px;
       }
       .arrow {
-        height: 10px;
-        width: 10px;
+        height: 20px;
+        width: 20px;
         margin-left: 5px;
       }
       path {
-        fill: var(--text-color) !important;
+        stroke: var(--text-color) !important;
       }
     }
   }

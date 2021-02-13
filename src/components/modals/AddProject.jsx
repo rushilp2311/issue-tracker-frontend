@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FiX, FiPlusCircle } from 'react-icons/fi';
-import MemberRegistrationForm from '../common/forms/memberregistration';
+import AddProjectForm from '../common/forms/addprojectform';
 import Modal from '../common/modal';
+import InfoCard from '../common/cards/InfoCard';
 
 function AddProject() {
   const [showModal, setShowModal] = useState(false);
@@ -22,8 +23,11 @@ function AddProject() {
             <div className="modal__header">
               <h3>Add Project</h3>
             </div>
+            <>
+              <InfoCard text="There are two major part in this Form. Fill it carefully." />
+            </>
             <div className="modal__body">
-              <MemberRegistrationForm />
+              <AddProjectForm />
             </div>
           </div>
         </Modal>

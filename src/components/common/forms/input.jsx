@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiAlertTriangle } from 'react-icons/fi';
 
-const Input = ({ name, label, error, placeholder, ...rest }) => {
+const Input = ({ name, label, error, placeholder, value, ...rest }) => {
   return (
     <div className="form-group">
       <div className="label">

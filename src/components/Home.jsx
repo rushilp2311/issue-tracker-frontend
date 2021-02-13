@@ -4,9 +4,9 @@ import Sidebar from './Sidebar';
 
 function Home() {
   const [rtl] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [image] = useState(true);
-  const [toggled, setToggled] = useState(false);
+  const [toggled, setToggled] = useState(true);
 
   const handleToggleSidebar = (value) => {
     setToggled(value);

@@ -1,5 +1,5 @@
-@import '_variables';
-@import '_mixins';
+@import './utils/_variables';
+@import './utils/_mixins';
 #modal {
   background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
@@ -32,6 +32,7 @@
 
 .modal__container {
   min-height: 300px;
+  // min-width: 300px;
   padding: 10px 20px;
   .modal__close {
     display: flex;
@@ -51,6 +52,8 @@
     .form__container {
       form {
         .form__body {
+          padding-top: 0;
+          width: 100%;
           border: none;
         }
       }

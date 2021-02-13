@@ -1,0 +1,22 @@
+@import './utils/_variables';
+
+.card__container {
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  display: flex;
+  text-align: left;
+  padding: 10px 20px;
+  margin-top: 20px;
+  color: darken($blue, 20);
+  .image {
+    height: 20px;
+    width: 20px;
+    stroke: $blue;
+    margin-right: 20px;
+  }
+}
+.info {
+  background-color: $info;
+  border: 1px solid $info;
+}

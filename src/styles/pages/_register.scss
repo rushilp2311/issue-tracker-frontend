@@ -1,5 +1,5 @@
-@import '_mixins';
-@import '_variables';
+@import './utils/_mixins';
+@import './utils/_variables';
 .form__container {
   margin-top: 50px;
   display: flex;
@@ -12,9 +12,11 @@
     .form__body {
       border-radius: 5px;
       border: 1px solid #696767;
+      padding: 30px;
       p {
         font-size: 1.5em;
         text-align: center;
+        margin-bottom: 30px;
       }
       .form-group {
         .label {

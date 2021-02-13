@@ -21,6 +21,14 @@
     td {
       border: none;
       padding: 1em 0em;
+      .image {
+        margin-right: 5px;
+        stroke: var(--primary-color);
+      }
+    }
+    .edit {
+      cursor: pointer;
+      color: var(--primary-color);
     }
   }
 }

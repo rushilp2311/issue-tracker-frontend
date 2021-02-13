@@ -15,7 +15,6 @@ class Form extends Component {
     const { data } = this.state;
     const { error } = Joi.validate(data, this.schema, options);
     if (!error) return null;
-
     const errors = {};
     for (const item of error.details) errors[item.path[0]] = item.message;
     return errors;
@@ -37,6 +36,7 @@ class Form extends Component {
   };
 
   handleChange = ({ currentTarget: input }) => {
+    console.log(input);
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(input);
     if (errorMessage) errors[input.name] = errorMessage;

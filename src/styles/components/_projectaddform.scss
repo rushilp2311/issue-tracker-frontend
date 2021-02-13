@@ -1,0 +1,41 @@
+@import './utils/_variables';
+@import './utils/_mixins';
+.modal__container {
+  min-width: 300px;
+  .form__container {
+    form {
+      .form__body {
+        padding: 0 !important;
+        .title {
+          margin-bottom: 20px;
+        }
+        .line {
+          height: 1px;
+          margin-top: 30px;
+          background-color: var(--disabled-bg-color);
+        }
+        .project__details {
+          .MuiFormControl-root {
+            width: 100%;
+            .MuiInput-underline:not(.Mui-disabled):before {
+              border-bottom: 2px solid $gray;
+            }
+            .MuiInput-underline:not(.Mui-disabled):after {
+              border-bottom: 2px solid var(--primary-color);
+            }
+            .MuiInputBase-root {
+              color: var(--text-color) !important;
+
+              .MuiInputBase-input::after::before {
+                color: var(--text-color) !important;
+              }
+            }
+          }
+        }
+        .member__access {
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+}

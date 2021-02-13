@@ -1,8 +1,7 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
-import { ReactComponent as User } from '../../assets/user.svg';
-import { ReactComponent as Arrow } from '../../assets/down-arrow.svg';
+import { FiChevronDown, FiUser } from 'react-icons/fi';
 
 function DropDown() {
   return (
@@ -13,11 +12,11 @@ function DropDown() {
         className="myaccount"
       >
         <span>
-          <User className="user" />
+          <FiUser className="user" />
         </span>
         <h5>My account</h5>
         <span>
-          <Arrow className="arrow" />
+          <FiChevronDown className="arrow" />
         </span>
       </Dropdown.Toggle>
 

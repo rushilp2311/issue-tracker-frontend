@@ -75,83 +75,83 @@ function Sidebar({
         {/* Add Project Details */}
 
         <ul className="list">
-          {user.is_admin ? (
-            <Link to="/projects">
-              <li
-                className="list__item"
-                id="projects"
-                onClick={() => handleClick('projects')}
-              >
-                <p>
-                  <span>
-                    <FiTrello className="image" />
-                  </span>
-                  {!collapsed && `Projects`}
-                </p>
-              </li>
-            </Link>
-          ) : (
-            <Link to="/issues">
-              <li
-                className="list__item"
-                id="issues"
-                onClick={() => handleClick('issues')}
-              >
-                <p>
-                  <span>
-                    <RiBugLine className="image" />
-                  </span>
-                  {!collapsed && `Issues`}
-                </p>
-              </li>
-            </Link>
-          )}
-          <Link to="/dashboard">
-            <li
-              className="list__item"
-              id="dashboard"
-              onClick={() => handleClick('dashboard')}
-            >
+          <li
+            className="list__item"
+            id="dashboard"
+            onClick={() => handleClick('dashboard')}
+          >
+            <Link to="/dashboard">
               <p>
                 <span>
                   <FiLayout className="image" />
                 </span>
                 {!collapsed && `Dashboard`}
               </p>
+            </Link>
+          </li>
+          {user.is_admin ? (
+            <li
+              className="list__item"
+              id="projects"
+              onClick={() => handleClick('projects')}
+            >
+              <Link to="/projects">
+                <p>
+                  <span>
+                    <FiTrello className="image" />
+                  </span>
+                  {!collapsed && `Projects`}
+                </p>
+              </Link>
             </li>
-          </Link>
+          ) : (
+            <li
+              className="list__item"
+              id="issues"
+              onClick={() => handleClick('issues')}
+            >
+              <Link to="/issues">
+                <p>
+                  <span>
+                    <RiBugLine className="image" />
+                  </span>
+                  {!collapsed && `Issues`}
+                </p>
+              </Link>
+            </li>
+          )}
 
           {user.is_admin ? (
-            <Link to="/members">
-              <li
-                className="list__item"
-                id="members"
-                onClick={() => handleClick('members')}
-              >
+            <li
+              className="list__item"
+              id="members"
+              onClick={() => handleClick('members')}
+            >
+              <Link to="/members">
                 <p>
                   <span>
                     <FiUsers className="image" />
                   </span>
                   {!collapsed && `Members`}
                 </p>
-              </li>
-            </Link>
+              </Link>
+            </li>
           ) : null}
           {!user.is_admin ? (
-            <Link to="/sprint">
-              <li
-                className="list__item"
-                id="sprint"
-                onClick={() => handleClick('sprint')}
-              >
+            <li
+              className="list__item"
+              id="sprint"
+              onClick={() => handleClick('sprint')}
+            >
+              <Link to="/sprint">
                 <p>
                   <span>
                     <FiBook className="image" />
                   </span>
                   Sprint
                 </p>
-              </li>
-            </Link>
+              </Link>
+            </li>
           ) : null}
         </ul>
       </SidebarContent>
