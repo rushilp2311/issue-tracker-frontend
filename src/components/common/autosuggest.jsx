@@ -12,10 +12,18 @@ class AutoSuggest extends React.Component {
   }
 
   onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue,
-    });
-    this.props.handleAdminChange(newValue);
+    console.log(newValue);
+    const { handleAdminChange } = this.props;
+    if (newValue instanceof Object) {
+      this.setState({
+        value: newValue.name,
+      });
+      handleAdminChange(newValue.id);
+    } else {
+      this.setState({
+        value: newValue,
+      });
+    }
   };
 
   getSuggestions = (value) => {
@@ -30,9 +38,18 @@ class AutoSuggest extends React.Component {
         );
   };
 
-  getSuggestionValue = (suggestion) => suggestion.name;
+  getSuggestionValue = (suggestion) => {
+    return {
+      name: suggestion.name,
+      id: suggestion.member_id,
+    };
+  };
 
-  renderSuggestion = (suggestion) => <div>{suggestion.name}</div>;
+  renderSuggestion = (suggestion) => (
+    <div>
+      {suggestion.id} {suggestion.name}
+    </div>
+  );
 
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
@@ -56,14 +73,16 @@ class AutoSuggest extends React.Component {
     };
 
     return (
-      <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={this.renderSuggestion}
-        inputProps={inputProps}
-      />
+      <>
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={this.getSuggestionValue}
+          renderSuggestion={this.renderSuggestion}
+          inputProps={inputProps}
+        />
+      </>
     );
   }
 }

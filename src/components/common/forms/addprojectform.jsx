@@ -3,18 +3,19 @@
 import React from 'react';
 import Joi from 'joi';
 import TextField from '@material-ui/core/TextField';
+
 import AutoSuggest from '../autosuggest';
 import Form from './form';
-import { authService, memberService } from '../../../services';
+import { authService, projectService } from '../../../services';
 
 class AddProjectForm extends Form {
   state = {
     data: {
-      name: '',
+      project_name: '',
       due_date: '',
       project_admin: '',
     },
-    memberlist: [],
+    memberlist: this.props.memberlist,
     errors: {},
   };
 
@@ -28,39 +29,29 @@ class AddProjectForm extends Form {
     this.setState({ data });
   };
 
-  async componentDidUpdate() {
-    await memberService
-      .getAllMembers(authService.getCurrentUser().company_id)
-      .then((result) => {
-        this.setState({ memberlist: result.data });
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-  }
-
   schema = {
-    name: Joi.string().required().label('Name'),
+    project_name: Joi.string().required().label('Name'),
     due_date: Joi.date(),
-    project_admin: Joi.string(),
+    project_admin: Joi.number(),
   };
 
   doSubmit = async () => {
-    // const currentUser = authService.getCurrentUser();
-    // try {
-    //   const response = await memberService.registerMember({
-    //     ...this.state.data,
-    //     company_id: currentUser.company_id,
-    //   });
-    //   console.log(response);
-    //   this.props.setShowModal(false);
-    // } catch (ex) {
-    //   if (ex.response && ex.response.status === 400) {
-    //     const errors = { ...this.state.errors };
-    //     errors.email = ex.response.data;
-    //     this.setState({ errors });
-    //   }
-    // }
+    console.log(this.state);
+    const currentUser = authService.getCurrentUser();
+    try {
+      const response = await projectService.addProject({
+        ...this.state.data,
+        company_id: currentUser.company_id,
+      });
+      console.log(response);
+      this.props.setShowModal(false);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.email = ex.response.data;
+        this.setState({ errors });
+      }
+    }
   };
 
   render() {
@@ -71,7 +62,7 @@ class AddProjectForm extends Form {
             <div className="project__details">
               <h4 className="title">1. Project Details</h4>
               {this.renderInput(
-                'name',
+                'project_name',
                 "What's your Project Name?",
                 'text',
                 "Enter project's name"
@@ -87,6 +78,9 @@ class AddProjectForm extends Form {
                   shrink: true,
                 }}
               />
+              <p>
+                Status: <span>Open</span>
+              </p>
             </div>
 
             <div className="member__access">
