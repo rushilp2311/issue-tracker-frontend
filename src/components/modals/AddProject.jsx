@@ -13,12 +13,12 @@ function AddProject() {
   }
 
   useEffect(() => {
+    // TODO: ADD REDUX STORE TO REDUCE API CALLS
     async function fetchData() {
       await memberService
         .getAllMembers(authService.getCurrentUser().company_id)
         .then((result) => {
           setMemberList(result.data);
-          console.log(result.data);
         })
         .catch((error) => {
           console.log(error.response.data);

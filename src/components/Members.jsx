@@ -9,7 +9,10 @@ function Members() {
     async function getMembersList() {
       await memberService
         .getAllMembers(authService.getCurrentUser().company_id)
-        .then((result) => setMemberList(result.data))
+        .then((result) => {
+          console.log('Called HERE');
+          setMemberList(result.data);
+        })
         .catch((error) => {
           console.log(error.response.data);
         });

@@ -26,16 +26,13 @@ function Sidebar({
   );
 
   useEffect(() => {
-    console.log(activeItem);
     document.getElementById(activeItem).classList.add('active');
     return () => {
       localStorage.removeItem('current');
     };
   }, [activeItem]);
 
-  useEffect(() => {
-    console.log(toggled);
-  }, [toggled, collapsed]);
+  useEffect(() => {}, [toggled, collapsed]);
 
   const user = authService.getCurrentUser();
 
@@ -148,7 +145,7 @@ function Sidebar({
                   <span>
                     <FiBook className="image" />
                   </span>
-                  Sprint
+                  {!collapsed && `Sprint`}
                 </p>
               </Link>
             </li>
