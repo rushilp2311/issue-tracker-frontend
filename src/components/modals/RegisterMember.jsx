@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { FiX, FiUserPlus } from 'react-icons/fi';
-import MemberRegistrationForm from '../common/forms/memberregistration';
 import Modal from '../common/modal';
-import InfoCard from '../common/cards/InfoCard';
+
+const InfoCard = React.lazy(() => import('../common/cards/InfoCard'));
+const MemberRegistrationForm = React.lazy(() =>
+  import('../common/forms/memberregistration')
+);
 
 function RegisterMember() {
   const [showModal, setShowModal] = useState(false);

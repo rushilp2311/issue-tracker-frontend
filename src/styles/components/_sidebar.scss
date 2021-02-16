@@ -2,10 +2,13 @@
 .sidebar__container {
   overflow: auto;
   position: relative;
+  background-color: var(--tertiary-color);
+
   .sidebar__heading {
     height: 200px;
     padding: 0.7em 1.2em;
     display: flex;
+  margin-top: 20px;
     justify-content: space-between;
     .image {
       height: 25px;

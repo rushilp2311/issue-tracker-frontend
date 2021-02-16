@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { FiX, FiPlusCircle } from 'react-icons/fi';
-import AddProjectForm from '../common/forms/addprojectform';
 import Modal from '../common/modal';
-import InfoCard from '../common/cards/InfoCard';
 import { authService, memberService } from '../../services';
+
+const InfoCard = React.lazy(() => import('../common/cards/InfoCard'));
+const AddProjectForm = React.lazy(() =>
+  import('../common/forms/addprojectform')
+);
 
 function AddProject() {
   const [showModal, setShowModal] = useState(false);
@@ -42,7 +45,7 @@ function AddProject() {
               <h3>Add Project</h3>
             </div>
             <>
-              <InfoCard text="There are two major part in this Form. Fill it carefully." />
+              <InfoCard text="There are two major part in this Form. Fill it carefully. Status of the project will be Open by default." />
             </>
             <div className="modal__body">
               <AddProjectForm memberlist={memberlist} />

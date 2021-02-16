@@ -10,7 +10,6 @@ function Members() {
       await memberService
         .getAllMembers(authService.getCurrentUser().company_id)
         .then((result) => {
-          console.log('Called HERE');
           setMemberList(result.data);
         })
         .catch((error) => {
