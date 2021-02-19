@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-restricted-globals */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ProSidebar, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
 import {
@@ -21,28 +21,10 @@ function Sidebar({
   handleToggleSidebar,
   handleCollapsedSidebar,
 }) {
-  const [activeItem, setActiveItem] = useState(
-    () => localStorage.getItem('currentPage') || 'dashboard'
-  );
-
-  useEffect(() => {
-    document.getElementById(activeItem).classList.add('active');
-    return () => {
-      localStorage.removeItem('current');
-    };
-  }, [activeItem]);
-
   useEffect(() => {}, [toggled, collapsed]);
 
   const user = authService.getCurrentUser();
-
-  const handleClick = (item) => {
-    document.getElementById(activeItem).classList.remove('active');
-    document.getElementById(item).classList.add('active');
-    localStorage.setItem('currentPage', item);
-    setActiveItem(item);
-  };
-
+  console.log(user);
   return (
     <ProSidebar
       collapsed={collapsed}
@@ -72,11 +54,7 @@ function Sidebar({
         {/* Add Project Details */}
 
         <ul className="list">
-          <li
-            className="list__item"
-            id="dashboard"
-            onClick={() => handleClick('dashboard')}
-          >
+          <li className="list__item" id="dashboard">
             <Link to="/dashboard">
               <p>
                 <span>
@@ -87,11 +65,7 @@ function Sidebar({
             </Link>
           </li>
           {user.is_admin ? (
-            <li
-              className="list__item"
-              id="projects"
-              onClick={() => handleClick('projects')}
-            >
+            <li className="list__item" id="projects">
               <Link to="/projects">
                 <p>
                   <span>
@@ -102,11 +76,7 @@ function Sidebar({
               </Link>
             </li>
           ) : (
-            <li
-              className="list__item"
-              id="issues"
-              onClick={() => handleClick('issues')}
-            >
+            <li className="list__item" id="issues">
               <Link to="/issues">
                 <p>
                   <span>
@@ -119,11 +89,7 @@ function Sidebar({
           )}
 
           {user.is_admin ? (
-            <li
-              className="list__item"
-              id="members"
-              onClick={() => handleClick('members')}
-            >
+            <li className="list__item" id="members">
               <Link to="/members">
                 <p>
                   <span>
@@ -135,11 +101,7 @@ function Sidebar({
             </li>
           ) : null}
           {!user.is_admin ? (
-            <li
-              className="list__item"
-              id="sprint"
-              onClick={() => handleClick('sprint')}
-            >
+            <li className="list__item" id="sprint">
               <Link to="/sprint">
                 <p>
                   <span>

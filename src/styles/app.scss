@@ -15,6 +15,7 @@
 @import './pages/_landingpage';
 @import './pages/_register';
 @import './pages/_projects';
+@import './components/_search';
 html,
 body {
   min-height: 100%;
@@ -24,7 +25,9 @@ body {
   --text-color: #{$black};
   --secondary-color: #{$light-blue};
   --tertiary-color: #{$white};
-  --shadow: #e2e2e2;
+  --shadow: #55555565;
+  --hover-bg-color: rgba(0, 0, 0, 0.12);
+  --border-color: rgba(0, 0, 0, 0.185);
   --primary-color: #{$blue};
   --inverted-text-color: #{$white};
   --list-bg-color: #{$blue};
@@ -47,7 +50,9 @@ body {
   --tertiary-color: #{$purple-100};
   --shadow: #{$purple-300};
   --primary-color: #{$yellow};
+  --border-color: #30363d;
   --inverted-text-color: #{$black};
+  --hover-bg-color: #{$purple-300};
   --list-bg-color: #{$purple-300};
   --disabled-text-color: #{$gray};
   --disabled-bg-color: #{$darkgray};

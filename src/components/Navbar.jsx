@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -29,7 +30,9 @@ function Navbar() {
       <div className="navbar__container">
         <div className="controls">
           <span>
-            <FiSearch className="image" />
+            <Link to="/search">
+              <FiSearch className="image" />
+            </Link>
           </span>
           <span>
             <FiBell className="image" />
@@ -47,15 +50,15 @@ function Navbar() {
             <FiChevronDown className="image" />
           </div>
           <div className="account__menu" style={{ display: `${showMenu}` }}>
-            <h5 className="menu__item">
+            <h5 className="menu__item" onClick={handleClick}>
               <FiUser className="image" />
               Profile
             </h5>
-            <h5 className="menu__item">
+            <h5 className="menu__item" onClick={handleClick}>
               <FiSettings className="image" style={{ marginRight: '13px' }} />{' '}
               Settings
             </h5>
-            <h5 className="menu__item">
+            <h5 className="menu__item" onClick={handleClick}>
               <FiHelpCircle className="image" />
               Help
             </h5>

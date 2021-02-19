@@ -3,7 +3,7 @@
   .member__table {
     color: var(--text-color);
     border-collapse: separate;
-    border-spacing: 0em 20px;
+    border-spacing: 0em 10px;
     text-align: center;
     .member__heading {
       th {
@@ -16,19 +16,30 @@
     }
     tr {
       border-radius: 10px;
+      border: 1px solid var(--border-color);
     }
-
+    .id {
+      border-left: 1px solid var(--border-color);
+    }
+    .edit {
+      border-right: 1px solid var(--border-color);
+    }
     td {
       border: none;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
       padding: 1em 0em;
       .image {
         margin-right: 5px;
-        stroke: var(--primary-color);
+        height: 20px;
+        width: 20px;
+        stroke: var(--text-color);
       }
     }
     .edit {
       cursor: pointer;
-      color: var(--primary-color);
+      padding-right: 0.4em;
+      color: var(--text-color);
     }
   }
 }
@@ -39,9 +50,6 @@
     .member__table {
       font-size: 14px;
       color: var(--text-color);
-      border-collapse: separate;
-      border-spacing: 0em 20px;
-      text-align: center;
       .member__heading {
         th {
           border: none;
@@ -57,6 +65,8 @@
 
       td {
         border: none;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
         padding: 0.5em 0em;
       }
     }

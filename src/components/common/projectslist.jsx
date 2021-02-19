@@ -18,7 +18,7 @@ function ProjectList({ projectlist }) {
         <tbody>
           {projectlist.map((project) => (
             <tr key={project.project_id} className="member__info">
-              <td>{project.project_id}</td>
+              <td className="id">{project.project_id}</td>
               <td>{project.project_name}</td>
               <td>{project.creation_date.slice(0, 10)}</td>
               <td>{project.due_date.slice(0, 10)}</td>

@@ -3,12 +3,12 @@
   overflow: auto;
   position: relative;
   background-color: var(--tertiary-color);
-
+  border-right: 1px solid var(--border-color);
   .sidebar__heading {
     height: 200px;
     padding: 0.7em 1.2em;
     display: flex;
-  margin-top: 20px;
+    margin-top: 20px;
     justify-content: space-between;
     .image {
       height: 25px;
@@ -35,28 +35,14 @@
               width: 20px;
               margin-right: 20px;
               stroke: var(--text-color);
-              // fill: var(--text-color);
             }
           }
-
           color: var(--text-color);
         }
       }
     }
-    .active {
-      background-color: var(--list-bg-color);
-      border-radius: 2px;
-      a {
-        p {
-          span {
-            .image {
-              stroke: $white;
-            }
-          }
-
-          color: $white;
-        }
-      }
+    .list__item:hover {
+      background-color: var(--hover-bg-color);
     }
   }
 }

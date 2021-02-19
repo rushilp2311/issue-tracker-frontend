@@ -15,6 +15,15 @@ export async function getAllProjectDetails(company) {
   return result;
 }
 
+export async function getAssignedProjects(memberId) {
+  const result = await http.get(`${apiEndpoint}/getassignedproject`, {
+    headers: {
+      member_id: memberId,
+    },
+  });
+  return result;
+}
+
 export default {
   addProject,
 };
