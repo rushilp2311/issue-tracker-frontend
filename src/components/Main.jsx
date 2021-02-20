@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import Members from './Members';
 import Projects from './Projects';
 import Search from './Search';
+import ProjectDetail from './ProjectDetail';
 
 function Main() {
   return (
@@ -17,6 +18,7 @@ function Main() {
           <Route path="/members" component={Members} />
           <Route path="/profile" component={Members} />
           <Route path="/search" component={Search} />
+          <Route path="/projectdetails" component={ProjectDetail} />
         </Switch>
       </>
     </div>

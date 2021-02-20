@@ -6,10 +6,6 @@
   .search__heading {
     text-align: center;
   }
-  .search__subheading {
-    text-align: center;
-    margin-top: 20px;
-  }
   .search__bar {
     margin-top: 40px;
     display: flex;
@@ -68,17 +64,53 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    p {
+      color: var(--disabled-text-color);
+      font-size: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .result__heading {
+      font-size: 30px;
+      margin-bottom: 30px;
+      border: none;
+    }
+    .section__heading {
+      display: flex;
+      justify-content: space-between;
+      span {
+        font-size: 16px;
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+    }
     .projects__result-section {
-      width: 100%;
+      width: 60%;
       text-align: left;
+      overflow-wrap: break-word;
     }
     .members__result-section {
-      width: 100%;
+      width: 60%;
       text-align: left;
+      overflow-wrap: break-word;
+      margin-top: 30px;
     }
     .sprints__result-section {
-      width: 100%;
+      width: 60%;
       text-align: left;
+      overflow-wrap: break-word;
+      margin-top: 30px;
+    }
+  }
+  .search__image {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .image {
+      height: 300px;
+      width: 300px;
     }
   }
 }

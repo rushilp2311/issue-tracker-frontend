@@ -1,19 +1,8 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { FiMoreHorizontal } from 'react-icons/fi';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import { FiEdit } from 'react-icons/fi';
 
 function MemberList({ memberList }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
     <div className="memberlist__container">
       <Table responsive className="member__table">
@@ -37,22 +26,12 @@ function MemberList({ memberList }) {
               <td>{member.joining_date.slice(0, 10)}</td>
               <td>{member.last_login || '-'}</td>
               <td className="edit">
-                <FiMoreHorizontal className="image" onClick={handleClick} />
+                <FiEdit className="image" /> Edit
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        className="menu"
-      >
-        <MenuItem onClick={handleClose}>More</MenuItem>
-      </Menu>
     </div>
   );
 }

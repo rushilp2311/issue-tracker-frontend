@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { FiSearch, FiX } from 'react-icons/fi';
+import { FiSearch, FiX, FiArrowRight } from 'react-icons/fi';
+import { ReactComponent as SearchI } from '../assets/searchillus.svg';
 
 function Search() {
+  const initialResult = {
+    projects: [],
+    members: [],
+    sprints: [],
+  };
   const [searchtext, setSearchText] = useState('');
+  const [searchresult, setSearchResult] = useState(initialResult);
 
   const handleChange = ({ currentTarget: input }) => {
     setSearchText(input.value);
@@ -13,18 +20,11 @@ function Search() {
   };
 
   return (
-    <div className="search__container" style={{ height: '100%' }}>
+    <div className="search__container">
       <div className="search__heading">
-        <h1>
-          Search{' '}
-          <span role="img" aria-label="search">
-            🕵️‍♂️
-          </span>
-        </h1>
+        <h1>Search anything you want</h1>
       </div>
-      <div className="search__subheading">
-        <p>Search Anything you want.</p>
-      </div>
+
       <div className="search__bar">
         <div className="search__input">
           <FiSearch className="image" />
@@ -38,20 +38,49 @@ function Search() {
           {searchtext && <FiX className="image" onClick={handleClearSearch} />}
         </div>
       </div>
-      <div className="search__result">
-        <div className="projects__result-section">
-          <h4>Projects</h4>
-          <h5>{searchtext}</h5>
+      {searchtext ? (
+        <div className="search__result">
+          <p className="result__heading">Search Results</p>
+          <div className="projects__result-section">
+            <p className="section__heading">
+              Projects
+              {searchresult.projects.length > 2 && (
+                <span>
+                  view all <FiArrowRight />
+                </span>
+              )}
+            </p>
+            <h5>{searchtext}</h5>
+          </div>
+          <div className="members__result-section">
+            <p className="section__heading">
+              Members
+              {searchresult.members.length > 2 && (
+                <span>
+                  view all <FiArrowRight />
+                </span>
+              )}
+            </p>
+            <h5>{searchtext}</h5>
+          </div>
+          <div className="sprints__result-section">
+            <p className="section__heading">
+              Sprints
+              {searchresult.sprints.length > 2 && (
+                <span>
+                  view all <FiArrowRight />
+                </span>
+              )}
+            </p>
+            <h5>{searchtext}</h5>
+          </div>
         </div>
-        <div className="members__result-section">
-          <h4>Members</h4>
-          <h5>{searchtext}</h5>
+      ) : (
+        <div className="search__image">
+          <p>Type something to see magic</p>
+          <SearchI className="image" />
         </div>
-        <div className="sprints__result-section">
-          <h4>Sprints</h4>
-          <h5>{searchtext}</h5>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

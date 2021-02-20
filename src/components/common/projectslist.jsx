@@ -1,6 +1,7 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import { FiEdit } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 function ProjectList({ projectlist }) {
   return (
@@ -12,7 +13,6 @@ function ProjectList({ projectlist }) {
             <th>Name</th>
             <th>Creation Date</th>
             <th>Due Date</th>
-            <th>Controls</th>
           </tr>
         </thead>
         <tbody>
@@ -23,8 +23,9 @@ function ProjectList({ projectlist }) {
               <td>{project.creation_date.slice(0, 10)}</td>
               <td>{project.due_date.slice(0, 10)}</td>
               <td className="edit">
-                <FiEdit className="image" />
-                Edit
+                <Link to={{ pathname: '/projectdetails', state: project }}>
+                  <FiEdit className="image" /> Edit
+                </Link>
               </td>
             </tr>
           ))}
