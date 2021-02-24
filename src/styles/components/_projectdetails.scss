@@ -1,0 +1,106 @@
+@import '../utils/_variables';
+
+.projectdetail__container {
+  margin: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  // background-color: var(--tertiary-color);
+  // box-shadow: 0 1px 3px var(--shadow), 0 2px 16px var(--shadow);
+  animation: cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s;
+  transition-duration: 100ms;
+  border: 2px solid var(--border-color);
+  .close {
+    display: flex;
+    justify-content: flex-end;
+    .image {
+      height: 60px;
+      width: 60px;
+      stroke: var(--text-color);
+      stroke-width: 1;
+    }
+  }
+  .project__info__container {
+    margin-top: 40px;
+    padding: 1em;
+    display: flex;
+    justify-content: space-evenly;
+    .project__info__left {
+      padding: 1em;
+      width: 40%;
+      border: 2px solid var(--border-color);
+      background-color: var(--secondary-color);
+      height: 100px;
+    }
+    .project__info__right {
+      width: 55%;
+      border: 2px solid var(--border-color);
+      background-color: var(--secondary-color);
+      .edit__form__container {
+        padding: 2em;
+        form {
+          .edit__form__body {
+            .project__info {
+              .form-group {
+                display: flex;
+                flex-direction: column;
+                .label {
+                  font-size: 16px;
+                }
+                .form-control {
+                  border-radius: 2px;
+                  border: 2px solid gray;
+                  background-color: var(--tertiary-color);
+                  color: var(--text-color);
+                }
+                .error {
+                  border: 2px solid red !important;
+                }
+                .error-message {
+                  display: flex;
+                  align-items: center;
+                  margin-top: 5px;
+                  text-align: left;
+                  color: red;
+                  font-size: 14px;
+                }
+                .form-control:focus {
+                  border: 2px solid var(--primary-color);
+                  box-shadow: none;
+                }
+                .MuiFormControl-root {
+                  width: 100%;
+                  stroke: var(--text-color);
+                  .MuiInput-underline:not(.Mui-disabled):before {
+                    border-bottom: 2px solid $gray;
+                  }
+                  .MuiInput-underline:not(.Mui-disabled):after {
+                    border-bottom: 2px solid var(--primary-color);
+                  }
+                  .MuiInputBase-root {
+                    color: var(--disabled-text-color) !important;
+
+                    .MuiInputBase-input::after::before {
+                      color: var(--text-color) !important;
+                    }
+                  }
+                }
+              }
+            }
+            .form__btn {
+              @include btn(var(--primary-color), var(--inverted-text-color));
+              width: 100%;
+              margin-top: 25px;
+            }
+            .disabled__btn {
+              @include disabled-btn();
+              width: 100%;
+              margin-top: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

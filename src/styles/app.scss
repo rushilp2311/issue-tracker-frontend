@@ -10,15 +10,18 @@
 @import './components/_memberslist';
 @import './components/_card';
 @import './components/_modal';
+@import './components/_search';
+@import './components/_projectdetails';
 @import './components//_projectaddform';
 @import './pages/_home';
 @import './pages/_landingpage';
 @import './pages/_register';
 @import './pages/_projects';
-@import './components/_search';
+
 html,
 body {
   min-height: 100%;
+  transition-duration: 150ms;
 }
 :root {
   --background-color: #{$white};
