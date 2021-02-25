@@ -3,6 +3,7 @@
 import React from 'react';
 import Joi from 'joi';
 import TextField from '@material-ui/core/TextField';
+import Input from './input';
 import AutoSuggest from '../autosuggest';
 import Form from './form';
 import { authService, projectService } from '../../../services';
@@ -63,18 +64,31 @@ class ProjectEditForm extends Form {
     this.setState({ data: dataObj });
   };
 
+  handleChange = ({ currentTarget: input }) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(input);
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+
+    const data = { ...this.state.data };
+    data[input.name] = input.value;
+    this.setState({ data, errors });
+  };
+
   render() {
     return (
       <div className="edit__form__container">
         <form onSubmit={this.handleSubmit}>
           <div className="edit__form__body">
             <div className="project__info">
-              {this.renderInput(
-                'project_name',
-                'Change Project Name',
-                'text',
-                "Enter project's name"
-              )}
+              <Input
+                name="project_name"
+                label="Change Project Name"
+                value={this.state.data.project_name}
+                onChange={this.handleChange}
+                placeholder="Enter your Project Name"
+                error={this.state.errors.project_name}
+              />
               <div className="form-group">
                 <label>Change Due Date</label>
                 <TextField
@@ -97,7 +111,7 @@ class ProjectEditForm extends Form {
                 handleAdminChange={this.handleAdminChange}
               />
             </div>
-            {this.renderButton('Add Project')}
+            {this.renderButton('Save')}
           </div>
         </form>
       </div>

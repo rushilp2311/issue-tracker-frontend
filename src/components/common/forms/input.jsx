@@ -12,6 +12,7 @@ const Input = ({ name, label, error, placeholder, value, ...rest }) => {
         name={name}
         id={name}
         placeholder={placeholder}
+        value={value}
         className={error ? 'form-control error' : 'form-control'}
       />
       {error && (
