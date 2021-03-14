@@ -7,7 +7,6 @@ function AutoSuggest(props) {
   const memberlist = useSelector(selectAllMembers);
   const [name, setName] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-
   const onChange = (event, { newValue }) => {
     const { handleAdminChange } = props;
     if (newValue instanceof Object) {
@@ -18,8 +17,8 @@ function AutoSuggest(props) {
     }
   };
 
-  const getSuggestions = (v) => {
-    const inputValue = v.trim().toLowerCase();
+  const getSuggestions = (value) => {
+    const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
     return inputLength === 0

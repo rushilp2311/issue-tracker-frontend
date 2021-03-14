@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
+
 import { FiX, FiPlusCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { selectAllMembers } from '../../app/memberSlice';
 import Modal from '../common/modal';
+import AddProjectForm from '../common/forms/addprojectform';
 
 const InfoCard = React.lazy(() => import('../common/cards/InfoCard'));
-const AddProjectForm = React.lazy(() =>
-  import('../common/forms/addprojectform')
-);
 
 function AddProject() {
   const memberlist = useSelector(selectAllMembers);
@@ -32,7 +31,9 @@ function AddProject() {
               <h3>Add Project</h3>
             </div>
             <>
-              <InfoCard text="There are two major part in this Form. Fill it carefully. Status of the project will be Open by default." />
+              <Suspense fallback={<div>Loading...</div>}>
+                <InfoCard text="There are two major part in this Form. Fill it carefully. Status of the project will be Open by default." />
+              </Suspense>
             </>
             <div className="modal__body">
               <AddProjectForm memberlist={memberlist} />

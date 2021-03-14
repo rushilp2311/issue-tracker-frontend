@@ -69,16 +69,6 @@ class AddProjectForm extends Form {
                   "Enter project's name"
                 )}
                 <label>Enter Due Date</label>
-                {/* <TextField
-                  className="form-group"
-                  id="date"
-                  type="date"
-                  onChange={this.handleDateChange}
-                  value={this.state.data.due_date}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                /> */}
                 <DatePicker
                   name="due_date"
                   value={this.state.data.due_date}

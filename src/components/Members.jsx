@@ -8,6 +8,7 @@ const MemberList = React.lazy(() => import('./common/memberlist'));
 
 function Members() {
   const memberList = useSelector(selectAllMembers);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="members__container">

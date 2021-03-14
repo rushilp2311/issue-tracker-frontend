@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { authService, projectService } from '../services';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProjects, selectAllProjects } from '../app/projectSlice';
 import AddProject from './modals/AddProject';
 import ProjectList from './common/projectslist';
 
 function Projects() {
-  const [projectlist, setProjectList] = useState([]);
+  const dispatch = useDispatch();
+  const projectStatus = useSelector((state) => state.projects.status);
+  const projectlist = useSelector(selectAllProjects);
+
   useEffect(() => {
-    async function getProjectsList() {
-      await projectService
-        .getAllProjectDetails(authService.getCurrentUser().company_id)
-        .then((result) => setProjectList(result.data))
-        .catch((error) => {
-          console.log(error.response.data);
-        });
+    document.title = 'Issue Tracker';
+    if (projectStatus === 'idle') {
+      dispatch(fetchProjects());
     }
-    getProjectsList();
-  }, []);
+  }, [dispatch, projectStatus]);
   return (
     <div className="projects__container">
       <div className="projects__heading">
