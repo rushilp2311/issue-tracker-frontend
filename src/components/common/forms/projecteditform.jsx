@@ -1,26 +1,33 @@
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { Component } from 'react';
 import Joi from 'joi';
-import TextField from '@material-ui/core/TextField';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
 import Input from './input';
 import AutoSuggest from '../autosuggest';
-import Form from './form';
 import { authService, projectService } from '../../../services';
 
-class ProjectEditForm extends Form {
+class ProjectEditForm extends Component {
   state = {
     data: {
       project_name: '',
       due_date: '',
       project_admin: '',
+      status_name: '',
     },
-    memberlist: this.props.memberlist,
     errors: {},
   };
 
+  schema = {
+    project_name: Joi.string().required().label('Name'),
+    due_date: Joi.date(),
+    project_admin: Joi.number(),
+    status_name: Joi.string(),
+  };
+
   handleDateChange = (event) => {
-    const data = { ...this.state.data, due_date: event.target.value };
+    const data = { ...this.state.data, due_date: event._d };
     this.setState({ data });
   };
 
@@ -29,39 +36,45 @@ class ProjectEditForm extends Form {
     this.setState({ data });
   };
 
-  schema = {
-    project_name: Joi.string().required().label('Name'),
-    due_date: Joi.date(),
-    project_admin: Joi.number(),
-  };
-
   doSubmit = async () => {
-    console.log(this.state);
+    const { setShowModal } = this.props;
+    const { data, errors } = this.state;
     const currentUser = authService.getCurrentUser();
     try {
-      const response = await projectService.addProject({
-        ...this.state.data,
+      await projectService.addProject({
+        ...data,
         company_id: currentUser.company_id,
       });
-      console.log(response);
-      this.props.setShowModal(false);
+      setShowModal(false);
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
-        const errors = { ...this.state.errors };
-        errors.email = ex.response.data;
-        this.setState({ errors });
+        const e = { ...errors };
+        e.email = ex.response.data;
+        this.setState({ errors: e });
       }
     }
   };
 
   componentDidMount = () => {
     const { data } = this.props;
-    const dataObj = {
-      project_name: data.project_name,
-      due_date: data.due_date,
-      project_admin: '',
-    };
-    this.setState({ data: dataObj });
+    this.setState({ data });
+  };
+
+  validate = () => {
+    const options = { abortEarly: false };
+    const { data } = this.state;
+    const { error } = Joi.validate(data, this.schema, options);
+    if (!error) return null;
+    const errors = {};
+    for (const item of error.details) errors[item.path[0]] = item.message;
+    return errors;
+  };
+
+  validateProperty = ({ name, value }) => {
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const { error } = Joi.validate(obj, schema);
+    return error ? error.details[0].message : null;
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -76,45 +89,53 @@ class ProjectEditForm extends Form {
   };
 
   render() {
+    const { data, errors } = this.state;
     return (
-      <div className="edit__form__container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="edit__form__body">
-            <div className="project__info">
-              <Input
-                name="project_name"
-                label="Change Project Name"
-                value={this.state.data.project_name}
-                onChange={this.handleChange}
-                placeholder="Enter your Project Name"
-                error={this.state.errors.project_name}
-              />
-              <div className="form-group">
-                <label>Change Due Date</label>
-                <TextField
-                  id="date"
-                  type="date"
-                  onChange={this.handleDateChange}
-                  value={this.state.data.due_date}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <div className="edit__form__container">
+          <form onSubmit={this.handleSubmit}>
+            <div className="edit__form__body">
+              <div className="project__info">
+                <Input
+                  name="project_name"
+                  label="Change Project Name"
+                  value={data.project_name}
+                  onChange={this.handleChange}
+                  placeholder="Enter your Project Name"
+                  error={errors.project_name}
+                />
+                <Input
+                  name="status_name"
+                  label="Change Status"
+                  value={data.status_name}
+                  onChange={this.handleChange}
+                  placeholder="Enter your Project Name"
+                  error={errors.status_name}
+                />
+                <div className="form-group">
+                  <label>Change Due Date</label>
+                  <DatePicker
+                    value={data.due_date}
+                    onChange={this.handleDateChange}
+                    name="due_date"
+                  />
+                </div>
+              </div>
+
+              <div className="member__access">
+                <label>Change Project Admin</label>
+                <AutoSuggest
+                  value={this.props.data.name}
+                  handleAdminChange={this.handleAdminChange}
                 />
               </div>
+              <div className="form-group">
+                <button className="form__btn">Save</button>
+              </div>
             </div>
-
-            <div className="member__access">
-              <label>Change Project Admin</label>
-              <AutoSuggest
-                memberlist={this.state.memberlist}
-                value={this.state.data.project_admin}
-                handleAdminChange={this.handleAdminChange}
-              />
-            </div>
-            {this.renderButton('Save')}
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </MuiPickersUtilsProvider>
     );
   }
 }

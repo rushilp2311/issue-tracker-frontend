@@ -1,6 +1,7 @@
 @import './utils/_mixins';
 .members__container {
   padding: 1.5em 3em;
+  width: 95%;
   .members__heading {
     display: flex;
     justify-content: space-between;

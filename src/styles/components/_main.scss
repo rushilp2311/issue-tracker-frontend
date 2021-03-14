@@ -1,7 +1,9 @@
-.app.dashboar__container {
-  .main_container {
-    background-color: blue;
-    height: 100% !important;
-    width: 100% !important;
-  }
+.main__container {
+  // background-color: blue;
+  height: 100% !important;
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

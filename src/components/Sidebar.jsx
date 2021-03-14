@@ -24,7 +24,6 @@ function Sidebar({
   useEffect(() => {}, [toggled, collapsed]);
 
   const user = authService.getCurrentUser();
-  console.log(user);
   return (
     <ProSidebar
       collapsed={collapsed}
@@ -100,18 +99,17 @@ function Sidebar({
               </Link>
             </li>
           ) : null}
-          {!user.is_admin ? (
-            <li className="list__item" id="sprint">
-              <Link to="/sprint">
-                <p>
-                  <span>
-                    <FiBook className="image" />
-                  </span>
-                  {!collapsed && `Sprint`}
-                </p>
-              </Link>
-            </li>
-          ) : null}
+
+          <li className="list__item" id="sprint">
+            <Link to="/sprint">
+              <p>
+                <span>
+                  <FiBook className="image" />
+                </span>
+                {!collapsed && `Sprint`}
+              </p>
+            </Link>
+          </li>
         </ul>
       </SidebarContent>
     </ProSidebar>

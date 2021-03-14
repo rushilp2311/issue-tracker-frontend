@@ -1,6 +1,7 @@
 @import './utils/_mixins';
 .projects__container {
   padding: 1.5em 3em;
+  width: 95%;
   .projects__heading {
     display: flex;
     justify-content: space-between;

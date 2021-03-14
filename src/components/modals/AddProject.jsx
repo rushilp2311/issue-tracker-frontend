@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FiX, FiPlusCircle } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
+import { selectAllMembers } from '../../app/memberSlice';
 import Modal from '../common/modal';
-import { authService, memberService } from '../../services';
 
 const InfoCard = React.lazy(() => import('../common/cards/InfoCard'));
 const AddProjectForm = React.lazy(() =>
@@ -9,26 +10,12 @@ const AddProjectForm = React.lazy(() =>
 );
 
 function AddProject() {
+  const memberlist = useSelector(selectAllMembers);
+
   const [showModal, setShowModal] = useState(false);
-  const [memberlist, setMemberList] = useState([]);
   function handleToggle() {
     setShowModal(!showModal);
   }
-
-  useEffect(() => {
-    // TODO: ADD REDUX STORE TO REDUCE API CALLS
-    async function fetchData() {
-      await memberService
-        .getAllMembers(authService.getCurrentUser().company_id)
-        .then((result) => {
-          setMemberList(result.data);
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        });
-    }
-    fetchData();
-  }, []);
 
   return (
     <>

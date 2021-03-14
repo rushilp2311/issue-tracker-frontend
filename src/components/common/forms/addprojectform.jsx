@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import Joi from 'joi';
-import TextField from '@material-ui/core/TextField';
-
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
 import AutoSuggest from '../autosuggest';
 import Form from './form';
 import { authService, projectService } from '../../../services';
@@ -12,7 +12,7 @@ class AddProjectForm extends Form {
   state = {
     data: {
       project_name: '',
-      due_date: '',
+      due_date: new Date(),
       project_admin: '',
     },
     memberlist: this.props.memberlist,
@@ -20,7 +20,7 @@ class AddProjectForm extends Form {
   };
 
   handleDateChange = (event) => {
-    const data = { ...this.state.data, due_date: event.target.value };
+    const data = { ...this.state.data, due_date: event._d };
     this.setState({ data });
   };
 
@@ -56,46 +56,54 @@ class AddProjectForm extends Form {
 
   render() {
     return (
-      <div className="form__container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form__body">
-            <div className="project__details">
-              <h4 className="title">1. Project Details</h4>
-              {this.renderInput(
-                'project_name',
-                "What's your Project Name?",
-                'text',
-                "Enter project's name"
-              )}
-              <label>Enter Due Date</label>
-              <TextField
-                className="form-group"
-                id="date"
-                type="date"
-                onChange={this.handleDateChange}
-                value={this.state.data.due_date}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <p>
-                Status: <span>Open</span>
-              </p>
-            </div>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <div className="form__container">
+          <form onSubmit={this.handleSubmit}>
+            <div className="form__body">
+              <div className="project__details">
+                <h4 className="title">1. Project Details</h4>
+                {this.renderInput(
+                  'project_name',
+                  "What's your Project Name?",
+                  'text',
+                  "Enter project's name"
+                )}
+                <label>Enter Due Date</label>
+                {/* <TextField
+                  className="form-group"
+                  id="date"
+                  type="date"
+                  onChange={this.handleDateChange}
+                  value={this.state.data.due_date}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                /> */}
+                <DatePicker
+                  name="due_date"
+                  value={this.state.data.due_date}
+                  minDate={new Date()}
+                  onChange={this.handleDateChange}
+                />
+                <p>
+                  Status: <span>Open</span>
+                </p>
+              </div>
 
-            <div className="member__access">
-              <h4 className="title">2. Member Access</h4>
-              <label>Add Project Admin</label>
-              <AutoSuggest
-                memberlist={this.state.memberlist}
-                value={this.state.data.project_admin}
-                handleAdminChange={this.handleAdminChange}
-              />
+              <div className="member__access">
+                <h4 className="title">2. Member Access</h4>
+                <label>Add Project Admin</label>
+                <AutoSuggest
+                  memberlist={this.state.memberlist}
+                  value={this.state.data.project_admin}
+                  handleAdminChange={this.handleAdminChange}
+                />
+              </div>
+              {this.renderButton('Add Project')}
             </div>
-            {this.renderButton('Add Project')}
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </MuiPickersUtilsProvider>
     );
   }
 }

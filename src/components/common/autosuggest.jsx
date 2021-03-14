@@ -1,34 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Autosuggest from 'react-autosuggest';
+import { selectAllMembers } from '../../app/memberSlice';
 
-class AutoSuggest extends React.Component {
-  constructor() {
-    super();
+function AutoSuggest(props) {
+  const memberlist = useSelector(selectAllMembers);
+  const [name, setName] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
 
-    this.state = {
-      value: '',
-      suggestions: [],
-    };
-  }
-
-  onChange = (event, { newValue }) => {
-    console.log(newValue);
-    const { handleAdminChange } = this.props;
+  const onChange = (event, { newValue }) => {
+    const { handleAdminChange } = props;
     if (newValue instanceof Object) {
-      this.setState({
-        value: newValue.name,
-      });
+      setName(newValue.name);
       handleAdminChange(newValue.id);
     } else {
-      this.setState({
-        value: newValue,
-      });
+      setName(newValue);
     }
   };
 
-  getSuggestions = (value) => {
-    const { memberlist } = this.props;
-    const inputValue = value.trim().toLowerCase();
+  const getSuggestions = (v) => {
+    const inputValue = v.trim().toLowerCase();
     const inputLength = inputValue.length;
 
     return inputLength === 0
@@ -38,52 +29,44 @@ class AutoSuggest extends React.Component {
         );
   };
 
-  getSuggestionValue = (suggestion) => {
+  const getSuggestionValue = (suggestion) => {
     return {
       name: suggestion.name,
       id: suggestion.member_id,
     };
   };
 
-  renderSuggestion = (suggestion) => (
+  const renderSuggestion = (suggestion) => (
     <div>
       {suggestion.id} {suggestion.name}
     </div>
   );
 
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: this.getSuggestions(value),
-    });
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
   };
 
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: [],
-    });
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+  const inputProps = {
+    placeholder: 'Enter Project Admin Name',
+    value: name,
+    onChange: onChange,
   };
 
-  render() {
-    const { value, suggestions } = this.state;
-
-    const inputProps = {
-      placeholder: 'Enter Project Admin Name',
-      value,
-      onChange: this.onChange,
-    };
-
-    return (
-      <>
-        <Autosuggest
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={this.getSuggestionValue}
-          renderSuggestion={this.renderSuggestion}
-          inputProps={inputProps}
-        />
-      </>
-    );
-  }
+  return (
+    <>
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}
+      />
+    </>
+  );
 }
+
 export default AutoSuggest;

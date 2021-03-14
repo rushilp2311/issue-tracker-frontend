@@ -1,38 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { memberService, authService } from '../services';
-import MemberList from './common/memberlist';
+import React, { Suspense } from 'react';
+import { useSelector } from 'react-redux';
+import { selectAllMembers } from '../app/memberSlice';
+// import MemberList from './common/memberlist';
 import RegisterMember from './modals/RegisterMember';
 
-function Members() {
-  const [memberList, setMemberList] = useState([]);
-  useEffect(() => {
-    async function getMembersList() {
-      await memberService
-        .getAllMembers(authService.getCurrentUser().company_id)
-        .then((result) => {
-          setMemberList(result.data);
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        });
-    }
-    getMembersList();
-  }, []);
+const MemberList = React.lazy(() => import('./common/memberlist'));
 
+function Members() {
+  const memberList = useSelector(selectAllMembers);
   return (
-    <div className="members__container">
-      <div className="members__heading">
-        <div className="members__title">
-          <h4>Members</h4>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="members__container">
+        <div className="members__heading">
+          <div className="members__title">
+            <h4>Members</h4>
+          </div>
+          <div className="members__btn">
+            <RegisterMember />
+          </div>
         </div>
-        <div className="members__btn">
-          <RegisterMember />
+        <div className="members__list">
+          <MemberList memberList={memberList} />
         </div>
       </div>
-      <div className="members__list">
-        <MemberList memberList={memberList} />
-      </div>
-    </div>
+    </Suspense>
   );
 }
 

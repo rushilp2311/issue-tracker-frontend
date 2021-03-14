@@ -6,7 +6,7 @@
 @import './components/_sidebar';
 @import './components/_main';
 @import './components/_navbar';
-@import './components/_members';
+@import './pages/_members';
 @import './components/_memberslist';
 @import './components/_card';
 @import './components/_modal';
@@ -17,11 +17,11 @@
 @import './pages/_landingpage';
 @import './pages/_register';
 @import './pages/_projects';
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 html,
 body {
   min-height: 100%;
-  transition-duration: 150ms;
 }
 :root {
   --background-color: #{$white};

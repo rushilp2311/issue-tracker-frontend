@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchMembers } from './app/memberSlice';
 import LandingPage from './components/LandingPage';
 import Header from './components/Header';
 import Register from './components/Register';
@@ -9,12 +11,16 @@ import Home from './components/Home';
 import { authService } from './services';
 
 function App() {
+  const dispatch = useDispatch();
+  const memberStatus = useSelector((state) => state.members.status);
   const [currentUser] = useState(authService.getCurrentUser());
 
   useEffect(() => {
     document.title = 'Issue Tracker';
-  }, []);
-
+    if (memberStatus === 'idle') {
+      dispatch(fetchMembers());
+    }
+  }, [dispatch, memberStatus]);
   return (
     <div className="App">
       <Header />

@@ -3,6 +3,9 @@ $sidebar-bg-color: var(--secondary-color);
 $submenu-bg-color: var(--secondary-color);
 $sidebar-color: var(--text-color);
 @import '~react-pro-sidebar/dist/scss/styles.scss';
+.pro-sidebar {
+  z-index: 90;
+}
 
 // -------------------------------------------------------------------
 

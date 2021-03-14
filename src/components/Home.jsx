@@ -1,7 +1,6 @@
-import React, { useState, useEffect, Suspense } from 'react';
-
-const Sidebar = React.lazy(() => import('./Sidebar'));
-const Main = React.lazy(() => import('./Main'));
+import React, { useState, useEffect } from 'react';
+import Sidebar from './Sidebar';
+import Main from './Main';
 
 function Home() {
   const [rtl] = useState(false);
@@ -28,17 +27,15 @@ function Home() {
         toggled ? 'toggled' : ''
       } home__container`}
     >
-      <Suspense fallback={<div>Loading...</div>}>
-        <Sidebar
-          image={image}
-          collapsed={collapsed}
-          rtl={rtl}
-          toggled={toggled}
-          handleCollapsedSidebar={handleCollapsedSidebar}
-          handleToggleSidebar={handleToggleSidebar}
-        />
-        <Main />
-      </Suspense>
+      <Sidebar
+        image={image}
+        collapsed={collapsed}
+        rtl={rtl}
+        toggled={toggled}
+        handleCollapsedSidebar={handleCollapsedSidebar}
+        handleToggleSidebar={handleToggleSidebar}
+      />
+      <Main />
     </div>
   );
 }
