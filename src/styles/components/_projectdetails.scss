@@ -74,15 +74,29 @@
               }
             }
           }
-          .form__btn {
-            @include btn(var(--primary-color), var(--inverted-text-color));
-            width: 100%;
-            margin-top: 25px;
-          }
-          .disabled__btn {
-            @include disabled-btn();
-            width: 100%;
-            margin-top: 25px;
+          .form-group-btn {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-evenly;
+            .form__btn {
+              @include btn(var(--primary-color), var(--inverted-text-color));
+              width: 20%;
+              margin-top: 25px;
+            }
+            .disabled__btn {
+              @include disabled-btn();
+              width: 20%;
+              margin-top: 25px;
+            }
+            .form__btn-delete {
+              @include secondary-btn(var(--bg-color), var(--text-color), $red);
+              width: 20%;
+              margin-top: 25px;
+            }
+            .form__btn-delete:hover {
+              background-color: $red;
+              color: $white;
+            }
           }
         }
       }

@@ -5,13 +5,14 @@ import { selectAllMembers } from '../../app/memberSlice';
 
 function AutoSuggest(props) {
   const memberlist = useSelector(selectAllMembers);
-  const [name, setName] = useState('');
+  const [name, setName] = useState(props.value);
   const [suggestions, setSuggestions] = useState([]);
+
   const onChange = (event, { newValue }) => {
     const { handleAdminChange } = props;
     if (newValue instanceof Object) {
       setName(newValue.name);
-      handleAdminChange(newValue.id);
+      handleAdminChange(newValue.name);
     } else {
       setName(newValue);
     }

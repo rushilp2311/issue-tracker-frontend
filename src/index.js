@@ -6,7 +6,6 @@ import store from './app/store';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.scss';
-import 'typeface-inter';
 
 ReactDOM.render(
   <BrowserRouter>

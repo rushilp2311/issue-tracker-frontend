@@ -13,6 +13,7 @@ function ProjectList({ projectlist }) {
             <th>Name</th>
             <th>Creation Date</th>
             <th>Due Date</th>
+            <th>Project Admin</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@ function ProjectList({ projectlist }) {
               <td>{project.project_name}</td>
               <td>{project.creation_date.slice(0, 10)}</td>
               <td>{project.due_date.slice(0, 10)}</td>
+              <td>{project.name}</td>
               <td className="edit">
                 <Link to={{ pathname: '/projectdetails', state: project }}>
                   <FiEdit className="image" /> Edit
