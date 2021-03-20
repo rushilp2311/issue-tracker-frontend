@@ -1,0 +1,27 @@
+@import '../utils/variables';
+
+.emptylist__container {
+  display: flex;
+  justify-content: space-evenly;
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    font-size: 40px;
+    font-weight: 600 !important;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .uparrow {
+      height: 100px;
+      width: 100px;
+      fill: var(--text-color);
+      stroke: var(--text-color);
+    }
+  }
+}

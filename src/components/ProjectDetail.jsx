@@ -3,6 +3,8 @@ import { FiXCircle } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import ProjectEditForm from './common/forms/projecteditform';
 
+// TODO: Refactor Link params using id and Redux
+
 function ProjectDetail(props) {
   const { location } = props;
   const { state } = location;

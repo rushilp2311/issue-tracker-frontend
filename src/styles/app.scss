@@ -17,7 +17,8 @@
 @import './pages/_landingpage';
 @import './pages/_register';
 @import './pages/_projects';
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import './components/_emptylist';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html,
 body {
@@ -78,6 +79,10 @@ body {
   scrollbar-width: thin;
 }
 
+#root {
+  height: inherit;
+}
+
 p {
   margin-bottom: 0;
 }
@@ -119,6 +124,10 @@ h5 {
 small,
 .text_small {
   font-size: var(--small);
+}
+
+.App {
+  height: inherit;
 }
 
 @media only screen and (max-width: 600px) {

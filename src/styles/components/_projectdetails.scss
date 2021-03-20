@@ -36,7 +36,7 @@
               }
               .form-control {
                 border-radius: 2px;
-                border: 2px solid gray;
+                border: 2px solid $gray;
                 background-color: var(--tertiary-color);
                 color: var(--text-color);
               }
@@ -72,6 +72,45 @@
                   }
                 }
               }
+              .multi-select {
+                .go2646822163 {
+                  background-color: var(--tertiary-color);
+                  border: 2px solid $gray;
+                }
+                .go3425554998 {
+                  color: var(--text-color);
+
+                  padding-bottom: 2em;
+                  .panel-content {
+                    background-color: var(--tertiary-color);
+                    .select-panel {
+                      .go3973839879:hover {
+                        background-color: var(--secondary-color) !important;
+                      }
+                      .selected {
+                        background-color: var(--secondary-color) !important;
+                      }
+                      .go2343601875 {
+                        li {
+                          .selected {
+                            background-color: var(--secondary-color) !important;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  input {
+                    background-color: var(--tertiary-color);
+                    color: var(--text-color);
+                  }
+                }
+
+                .go2646822163:focus-within {
+                  border: none;
+                  border: 2px solid var(--primary-color);
+                  box-shadow: none;
+                }
+              }
             }
           }
           .form-group-btn {
@@ -83,19 +122,19 @@
               width: 20%;
               margin-top: 25px;
             }
+
             .disabled__btn {
               @include disabled-btn();
               width: 20%;
               margin-top: 25px;
             }
             .form__btn-delete {
-              @include secondary-btn(var(--bg-color), var(--text-color), $red);
+              @include btn($red, $white);
               width: 20%;
               margin-top: 25px;
             }
             .form__btn-delete:hover {
-              background-color: $red;
-              color: $white;
+              background-color: lighten($red, 10);
             }
           }
         }

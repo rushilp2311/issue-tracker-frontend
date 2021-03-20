@@ -12,7 +12,7 @@ function AutoSuggest(props) {
     const { handleAdminChange } = props;
     if (newValue instanceof Object) {
       setName(newValue.name);
-      handleAdminChange(newValue.name);
+      handleAdminChange(newValue.id);
     } else {
       setName(newValue);
     }

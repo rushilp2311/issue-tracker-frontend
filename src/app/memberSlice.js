@@ -18,7 +18,19 @@ export const fetchMembers = createAsyncThunk(
 const memberSlice = createSlice({
   name: 'members',
   initialState,
-  reducers: {},
+  reducers: {
+    memberAdded(state, action) {
+      state.members.push(action.payload);
+    },
+    memberDeleted(state, action) {
+      state.members.splice(
+        state.members.findIndex(function (i) {
+          return i.member_id === action.payload;
+        }),
+        1
+      );
+    },
+  },
   extraReducers: {
     [fetchMembers.pending]: (state, action) => {
       state.status = 'loading';
@@ -33,6 +45,8 @@ const memberSlice = createSlice({
     },
   },
 });
+
+export const { memberAdded, memberDeleted } = memberSlice.actions;
 
 export default memberSlice.reducer;
 

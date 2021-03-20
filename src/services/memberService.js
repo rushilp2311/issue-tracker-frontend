@@ -16,6 +16,15 @@ export async function registerMember(member) {
   return result;
 }
 
+export async function deleteMember(email) {
+  const result = await http.delete(`${apiEndpoint}/deletemember`, {
+    headers: {
+      data: email,
+    },
+  });
+  return result;
+}
+
 export default {
   getAllMembers,
 };

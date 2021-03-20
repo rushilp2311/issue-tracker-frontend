@@ -1,7 +1,10 @@
 import React from 'react';
 import Joi from 'joi';
+import { connect } from 'react-redux';
+
 import Form from './form';
 import { authService, memberService } from '../../../services';
+import { memberAdded } from '../../../app/memberSlice';
 
 class MemberRegistrationForm extends Form {
   state = {
@@ -11,6 +14,10 @@ class MemberRegistrationForm extends Form {
     },
     errors: {},
   };
+
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   schema = {
     name: Joi.string().required().label('Name'),
@@ -24,7 +31,7 @@ class MemberRegistrationForm extends Form {
         ...this.state.data,
         company_id: currentUser.company_id,
       });
-      console.log(response);
+      this.props.dispatch(memberAdded(response.data.member));
       this.props.setShowModal(false);
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
@@ -52,6 +59,7 @@ class MemberRegistrationForm extends Form {
               'text',
               "Enter member's email"
             )}
+
             {this.renderButton('Add Member')}
           </div>
         </form>
@@ -59,4 +67,4 @@ class MemberRegistrationForm extends Form {
     );
   }
 }
-export default MemberRegistrationForm;
+export default connect(null)(MemberRegistrationForm);

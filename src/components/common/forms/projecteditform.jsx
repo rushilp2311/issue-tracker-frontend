@@ -3,12 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import Joi from 'joi';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { useSelector } from 'react-redux';
 import MomentUtils from '@date-io/moment';
+import MultiSelect from 'react-multi-select-component';
 import Input from './input';
 import AutoSuggest from '../autosuggest';
-import { authService, projectService } from '../../../services';
+import { selectAllMembers } from '../../../app/memberSlice';
+// import { authService, projectService } from '../../../services';
 
 function ProjectEditForm(props) {
+  const memberList = useSelector(selectAllMembers);
+
+  const options = memberList.map((member) => {
+    return { label: member.name, value: member };
+  });
+
   const [data, setData] = useState({
     project_name: '',
     due_date: '',
@@ -16,7 +25,7 @@ function ProjectEditForm(props) {
     status_name: '',
   });
   const [errors, setErrors] = useState({});
-
+  const [selected, setSelected] = useState([]);
   const schema = {
     project_name: Joi.string().required().label('Name'),
     due_date: Joi.date(),
@@ -33,30 +42,31 @@ function ProjectEditForm(props) {
     setData({ ...data, project_admin: value });
   };
 
-  const doSubmit = async () => {
-    const { setShowModal } = props;
-    const currentUser = authService.getCurrentUser();
-    try {
-      await projectService.addProject({
-        ...data,
-        company_id: currentUser.company_id,
-      });
-      setShowModal(false);
-    } catch (ex) {
-      if (ex.response && ex.response.status === 400) {
-        const e = { ...errors };
-        e.email = ex.response.data;
-        setErrors(e);
-      }
-    }
-  };
+  // const doSubmit = async () => {
+  //   const { setShowModal } = props;
+  //   const currentUser = authService.getCurrentUser();
+  //   try {
+  //     await projectService.addProject({
+  //       ...data,
+  //       company_id: currentUser.company_id,
+  //     });
+  //     setShowModal(false);
+  //   } catch (ex) {
+  //     if (ex.response && ex.response.status === 400) {
+  //       const e = { ...errors };
+  //       e.email = ex.response.data;
+  //       setErrors(e);
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
+    const { project_name, due_date, name, status_name } = props.data;
     const d = {
-      project_name: props.data.project_name,
-      due_date: props.data.due_date,
-      project_admin: props.data.name,
-      status_name: props.data.status_name,
+      project_name: project_name,
+      due_date: due_date,
+      project_admin: name,
+      status_name: status_name,
     };
     setData(d);
   }, [
@@ -64,16 +74,17 @@ function ProjectEditForm(props) {
     props.data.due_date,
     props.data.name,
     props.data.status_name,
+    props.data,
   ]);
 
-  const validate = () => {
-    const options = { abortEarly: false };
-    const { error } = Joi.validate(data, schema, options);
-    if (!error) return null;
-    const e = {};
-    for (const item of error.details) e[item.path[0]] = item.message;
-    return e;
-  };
+  // const validate = () => {
+  //   const options = { abortEarly: false };
+  //   const { error } = Joi.validate(data, schema, options);
+  //   if (!error) return null;
+  //   const e = {};
+  //   for (const item of error.details) e[item.path[0]] = item.message;
+  //   return e;
+  // };
 
   const validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
@@ -134,6 +145,15 @@ function ProjectEditForm(props) {
                   name="due_date"
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="memberselect">Add Members</label>
+                <MultiSelect
+                  options={options}
+                  value={selected}
+                  onChange={setSelected}
+                  labelledBy="Select"
+                />
+              </div>
             </div>
 
             <div className="member__access">
@@ -143,12 +163,10 @@ function ProjectEditForm(props) {
                 handleAdminChange={handleAdminChange}
               />
             </div>
+
             <div className="form-group-btn">
               <button className="form__btn" onClick={handleSubmit}>
                 Save
-              </button>
-              <button className="form__btn-delete" onClick={handleDelete}>
-                Delete
               </button>
             </div>
           </div>

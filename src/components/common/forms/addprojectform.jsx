@@ -36,7 +36,6 @@ class AddProjectForm extends Form {
   };
 
   doSubmit = async () => {
-    console.log(this.state);
     const currentUser = authService.getCurrentUser();
     try {
       const response = await projectService.addProject({

@@ -5,6 +5,7 @@ $sidebar-color: var(--text-color);
 @import '~react-pro-sidebar/dist/scss/styles.scss';
 .pro-sidebar {
   z-index: 90;
+  height: inherit !important;
 }
 
 // -------------------------------------------------------------------
