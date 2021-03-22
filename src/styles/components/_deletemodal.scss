@@ -1,0 +1,39 @@
+@import '../utils/_variables';
+@import '../utils/_mixins';
+
+.members__delete__btn {
+  color: var(--text-color);
+  .image {
+    stroke: var(--text-color);
+  }
+}
+
+.members__delete__btn:hover {
+  color: red;
+  .image {
+    stroke: red !important;
+  }
+}
+
+.modal__container {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: space-between;
+  .modal__header {
+    margin-top: 30px;
+  }
+  .modal__body {
+    display: flex;
+    justify-content: space-between;
+    .delete__btn {
+      @include secondary-btn(var(--secondary-color), var(--text-color), $red);
+    }
+    .delete__btn:hover {
+      background-color: red;
+    }
+    .cancel__btn {
+      @include btn(var(--primary-color), var(--inverted-text-color));
+    }
+  }
+}

@@ -2,21 +2,11 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { useDispatch } from 'react-redux';
-import { FiEdit, FiTrash } from 'react-icons/fi';
-import { memberDeleted } from '../../app/memberSlice';
-import { memberService } from '../../services';
+import { FiEdit } from 'react-icons/fi';
+import DeleteModal from '../modals/DeleteModal';
 import EmptyList from './EmptyList';
 
 function MemberList({ memberList }) {
-  const dispatch = useDispatch();
-  const handleDelete = async (id) => {
-    const result = await memberService.deleteMember(id);
-    if (result.status === 200) {
-      dispatch(memberDeleted(id));
-    }
-  };
-
   return (
     <div className="memberlist__container">
       {memberList.length > 0 ? (
@@ -43,12 +33,11 @@ function MemberList({ memberList }) {
                 <td className="edit">
                   <FiEdit className="image" /> Edit
                 </td>
-                <td
-                  className="edit"
-                  onClick={() => handleDelete(member.member_id)}
-                >
-                  <FiTrash className="image" style={{ stroke: 'red' }} />
-                  <span style={{ color: 'red' }}>Delete</span>
+                <td className="edit">
+                  <DeleteModal
+                    msg="Member will be deleted. Are you sure?"
+                    id={member.member_id}
+                  />
                 </td>
               </tr>
             ))}
