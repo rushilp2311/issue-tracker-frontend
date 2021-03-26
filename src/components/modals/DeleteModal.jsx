@@ -33,7 +33,7 @@ function DeleteModal({ msg, id }) {
             <div className="modal__header">
               <h3>{msg}</h3>
             </div>
-            <div className="modal__body">
+            <div className="modal__body delete__modal-container">
               <button className="delete__btn" onClick={() => handleDelete(id)}>
                 Delete
               </button>

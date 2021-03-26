@@ -12,18 +12,21 @@ function AutoSuggest(props) {
     const { handleAdminChange } = props;
     if (newValue instanceof Object) {
       setName(newValue.name);
-      handleAdminChange(newValue.id);
     } else {
       setName(newValue);
     }
+    handleAdminChange(newValue.id, newValue.name);
   };
 
   const getSuggestions = (value) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
-
     return inputLength === 0
       ? []
+      : memberlist.filter(
+          (obj) => obj.name.toLowerCase().slice(0, inputLength) === inputValue
+        ).length < 1
+      ? [{ name: 'No member Found' }]
       : memberlist.filter(
           (obj) => obj.name.toLowerCase().slice(0, inputLength) === inputValue
         );
@@ -37,9 +40,15 @@ function AutoSuggest(props) {
   };
 
   const renderSuggestion = (suggestion) => (
-    <div>
-      {suggestion.id} {suggestion.name}
-    </div>
+    <>
+      {memberlist.length >= 1 ? (
+        <div>
+          {suggestion.id} {suggestion.name}
+        </div>
+      ) : (
+        <div>{suggestion.name}</div>
+      )}
+    </>
   );
 
   const onSuggestionsFetchRequested = ({ value }) => {

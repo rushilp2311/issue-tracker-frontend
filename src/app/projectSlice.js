@@ -17,7 +17,14 @@ export const fetchProjects = createAsyncThunk(
 const projectSlice = createSlice({
   name: 'projects',
   initialState,
-  reducers: {},
+  reducers: {
+    projectUpdated(state, action) {
+      const projectIndex = state.projects.findIndex(
+        (project) => project.project_id === action.payload.project_id
+      );
+      state.projects[projectIndex] = action.payload;
+    },
+  },
   extraReducers: {
     [fetchProjects.pending]: (state, action) => {
       state.status = 'loading';
@@ -32,6 +39,8 @@ const projectSlice = createSlice({
     },
   },
 });
+
+export const { projectUpdated } = projectSlice.actions;
 
 export default projectSlice.reducer;
 

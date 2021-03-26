@@ -1,20 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchProjects, selectAllProjects } from '../app/projectSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectAllProjects } from '../app/projectSlice';
 import AddProject from './modals/AddProject';
 import ProjectList from './common/projectslist';
 
 function Projects() {
-  const dispatch = useDispatch();
-  const projectStatus = useSelector((state) => state.projects.status);
   const projectlist = useSelector(selectAllProjects);
 
-  useEffect(() => {
-    document.title = 'Issue Tracker';
-    if (projectStatus === 'idle') {
-      dispatch(fetchProjects());
-    }
-  }, [dispatch, projectStatus]);
   return (
     <div className="projects__container">
       <div className="projects__heading">

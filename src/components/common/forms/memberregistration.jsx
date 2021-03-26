@@ -15,10 +15,6 @@ class MemberRegistrationForm extends Form {
     errors: {},
   };
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   schema = {
     name: Joi.string().required().label('Name'),
     email: Joi.string().required().email().label('Email'),

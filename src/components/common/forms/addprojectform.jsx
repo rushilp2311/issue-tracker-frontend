@@ -38,11 +38,10 @@ class AddProjectForm extends Form {
   doSubmit = async () => {
     const currentUser = authService.getCurrentUser();
     try {
-      const response = await projectService.addProject({
+      await projectService.addProject({
         ...this.state.data,
         company_id: currentUser.company_id,
       });
-      console.log(response);
       this.props.setShowModal(false);
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {

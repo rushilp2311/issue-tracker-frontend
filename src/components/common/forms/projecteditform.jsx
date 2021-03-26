@@ -3,17 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import Joi from 'joi';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import MomentUtils from '@date-io/moment';
 import MultiSelect from 'react-multi-select-component';
 import Input from './input';
 import AutoSuggest from '../autosuggest';
 import { selectAllMembers } from '../../../app/memberSlice';
-// import { authService, projectService } from '../../../services';
+import { projectUpdated } from '../../../app/projectSlice';
+import { projectService } from '../../../services';
 
 function ProjectEditForm(props) {
   const memberList = useSelector(selectAllMembers);
-
+  const dispatch = useDispatch();
   const options = memberList.map((member) => {
     return { label: member.name, value: member };
   });
@@ -22,7 +23,8 @@ function ProjectEditForm(props) {
     project_name: '',
     due_date: '',
     project_admin: '',
-    status_name: '',
+    status_id: '',
+    member_id: 0,
   });
   const [errors, setErrors] = useState({});
   const [selected, setSelected] = useState([]);
@@ -30,61 +32,37 @@ function ProjectEditForm(props) {
     project_name: Joi.string().required().label('Name'),
     due_date: Joi.date(),
     project_admin: Joi.number(),
-    status_name: Joi.string(),
+    status_id: Joi.string(),
+    member_id: Joi.number(),
   };
 
   const handleDateChange = (event) => {
     setData({ ...data, due_date: event._d });
   };
 
-  const handleAdminChange = (value) => {
-    console.log(value);
-    setData({ ...data, project_admin: value });
+  const handleAdminChange = (value, project_admin) => {
+    setData({ ...data, member_id: value, project_admin: project_admin });
   };
 
-  // const doSubmit = async () => {
-  //   const { setShowModal } = props;
-  //   const currentUser = authService.getCurrentUser();
-  //   try {
-  //     await projectService.addProject({
-  //       ...data,
-  //       company_id: currentUser.company_id,
-  //     });
-  //     setShowModal(false);
-  //   } catch (ex) {
-  //     if (ex.response && ex.response.status === 400) {
-  //       const e = { ...errors };
-  //       e.email = ex.response.data;
-  //       setErrors(e);
-  //     }
-  //   }
-  // };
+  const prevMember = props.data.member_id;
 
   useEffect(() => {
-    const { project_name, due_date, name, status_name } = props.data;
+    const { project_name, due_date, name, status_id } = props.data;
     const d = {
       project_name: project_name,
       due_date: due_date,
       project_admin: name,
-      status_name: status_name,
+      status_id: status_id,
+      member_id: props.data.member_id,
     };
     setData(d);
   }, [
     props.data.project_name,
     props.data.due_date,
     props.data.name,
-    props.data.status_name,
+    props.data.status_id,
     props.data,
   ]);
-
-  // const validate = () => {
-  //   const options = { abortEarly: false };
-  //   const { error } = Joi.validate(data, schema, options);
-  //   if (!error) return null;
-  //   const e = {};
-  //   for (const item of error.details) e[item.path[0]] = item.message;
-  //   return e;
-  // };
 
   const validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
@@ -105,14 +83,22 @@ function ProjectEditForm(props) {
     setErrors(errors);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
-  };
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    console.log('delete button clicked');
+    await projectService.updateProject({
+      data: { project_id: props.data.project_id, ...data, prevMember },
+      members: selected,
+    });
+    dispatch(
+      projectUpdated({
+        project_id: props.data.project_id,
+        project_name: data.project_name,
+        due_date: data.due_date,
+        status_id: data.status_id,
+        name: data.project_admin,
+        creation_date: props.data.creation_date,
+      })
+    );
   };
 
   return (
@@ -129,14 +115,24 @@ function ProjectEditForm(props) {
                 placeholder="Enter your Project Name"
                 error={errors.project_name}
               />
-              <Input
-                name="status_name"
+              {/* <Input
+                name="status_id"
                 label="Change Status"
-                value={data.status_name}
+                value={data.status_id}
                 onChange={handleChange}
                 placeholder="Enter your Project Name"
-                error={errors.status_name}
-              />
+                error={errors.status_id}
+              /> */}
+              <select
+                name="status_id"
+                id="status_id"
+                value={data.status_id}
+                onChange={handleChange}
+              >
+                <option value={1}>OPEN</option>
+                <option value={2}>IN-PROGRESS</option>
+                <option value={5}>DONE</option>
+              </select>
               <div className="form-group">
                 <label>Change Due Date</label>
                 <DatePicker
@@ -159,7 +155,7 @@ function ProjectEditForm(props) {
             <div className="member__access">
               <label>Change Project Admin</label>
               <AutoSuggest
-                value={props.data.name ? props.data.name : ''}
+                value={data.project_admin}
                 handleAdminChange={handleAdminChange}
               />
             </div>

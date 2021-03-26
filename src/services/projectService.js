@@ -24,6 +24,10 @@ export async function getAssignedProjects(memberId) {
   return result;
 }
 
+export async function updateProject(project) {
+  await http.post(`${apiEndpoint}/updateproject`, project);
+}
+
 export default {
   addProject,
 };
