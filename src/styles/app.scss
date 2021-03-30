@@ -28,7 +28,7 @@ body {
 :root {
   --background-color: #{$white};
   --text-color: #{$black};
-  --secondary-color: #{$light-blue};
+  --secondary-color: #{$gray};
   --tertiary-color: #{$white};
   --shadow: #55555565;
   --hover-bg-color: rgba(0, 0, 0, 0.12);
@@ -36,8 +36,8 @@ body {
   --primary-color: #{$blue};
   --inverted-text-color: #{$white};
   --list-bg-color: #{$blue};
-  --disabled-text-color: #{$darkgray};
-  --disabled-bg-color: #{$gray};
+  --disabled-text-color: #{$black-200};
+  --disabled-bg-color: #{$black-100};
   --base-size: 1em;
   --type-scale: 1.25;
   --h5: calc(var(--base-size) * var(--type-scale));
@@ -49,18 +49,18 @@ body {
 }
 
 .dark {
-  --background-color: #{$purple-300};
+  --background-color: #{$black-300};
   --text-color: #{$white};
-  --secondary-color: #{$purple-200};
-  --tertiary-color: #{$purple-100};
-  --shadow: #{$purple-300};
-  --primary-color: #{$yellow};
+  --secondary-color: #{$black-200};
+  --tertiary-color: #{$black-100};
+  --shadow: #{$black-300};
+  --primary-color: #{$blue};
   --border-color: #30363d;
-  --inverted-text-color: #{$black};
-  --hover-bg-color: #{$purple-300};
-  --list-bg-color: #{$purple-300};
-  --disabled-text-color: #{$gray};
-  --disabled-bg-color: #{$darkgray};
+  --inverted-text-color: #{$white};
+  --hover-bg-color: #{$black-300};
+  --list-bg-color: #{$black-300};
+  --disabled-text-color: #{$black-100};
+  --disabled-bg-color: #{$black-200};
   --base-size: 1em;
   --type-scale: 1.25;
   --h5: calc(var(--base-size) * var(--type-scale));

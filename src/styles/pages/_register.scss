@@ -11,7 +11,7 @@
     box-sizing: border-box;
     .form__body {
       border-radius: 5px;
-      border: 1px solid #696767;
+      border: 1px solid $black-100;
       padding: 30px;
       p {
         font-size: 1.5em;
@@ -24,7 +24,7 @@
         }
         .form-control {
           border-radius: 2px;
-          border: 2px solid gray;
+          border: 2px solid $black-100;
           background-color: var(--tertiary-color);
           color: var(--text-color);
         }

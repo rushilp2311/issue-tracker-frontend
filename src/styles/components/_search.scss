@@ -20,12 +20,11 @@
       border: 1px solid var(--border-color);
       padding: 1em;
       background-color: var(--tertiary-color);
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
+      border-radius: 2px;
       .image {
         height: 25px;
         width: 25px;
-        stroke: var(--disabled-text-color);
+        stroke: var(--text-color);
         margin-right: 20px;
         cursor: pointer;
       }
@@ -67,7 +66,7 @@
     justify-content: center;
 
     p {
-      color: var(--disabled-text-color);
+      color: var(--text-color);
       font-size: 20px;
       border-bottom: 1px solid var(--border-color);
     }

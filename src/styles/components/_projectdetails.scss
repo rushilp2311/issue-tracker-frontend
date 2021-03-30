@@ -36,7 +36,7 @@
               }
               .form-control {
                 border-radius: 2px;
-                border: 2px solid $gray;
+                border: 2px solid $black-100;
                 background-color: var(--tertiary-color);
                 color: var(--text-color);
               }
@@ -59,7 +59,7 @@
                 width: 100%;
                 stroke: var(--text-color);
                 .MuiInput-underline:not(.Mui-disabled):before {
-                  border-bottom: 2px solid $gray;
+                  border-bottom: 2px solid $black-100;
                 }
                 .MuiInput-underline:not(.Mui-disabled):after {
                   border-bottom: 2px solid var(--primary-color);
@@ -75,7 +75,7 @@
               .multi-select {
                 .go2646822163 {
                   background-color: var(--tertiary-color);
-                  border: 2px solid $gray;
+                  border: 2px solid $black-100;
                 }
                 .go3425554998 {
                   color: var(--text-color);
