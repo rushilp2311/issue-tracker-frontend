@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ProSidebar, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
+import { useSelector } from 'react-redux';
 import {
   FiUsers,
   FiLayout,
@@ -21,6 +22,8 @@ function Sidebar({
   handleToggleSidebar,
   handleCollapsedSidebar,
 }) {
+  const assignedProject = useSelector((state) => state.members.assignedProject);
+
   useEffect(() => {}, [toggled, collapsed]);
 
   const user = authService.getCurrentUser();
@@ -51,6 +54,23 @@ function Sidebar({
 
       <SidebarContent>
         {/* Add Project Details */}
+
+        {!collapsed && (
+          <div className="project__details">
+            {assignedProject ? (
+              <>
+                <p className="project_id">
+                  Project Id: <span>{assignedProject.project_id}</span>
+                </p>
+                <p className="project__name">
+                  Project Name: <span>{assignedProject.project_name}</span>
+                </p>
+              </>
+            ) : (
+              <p>Not assigned to a Project</p>
+            )}
+          </div>
+        )}
 
         <ul className="list">
           <li className="list__item" id="dashboard">

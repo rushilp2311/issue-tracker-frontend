@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import { memberService, authService } from '../services';
 
 const initialState = {
   members: [],
+  assignedProject: {},
   status: 'idle',
   error: null,
 };
@@ -13,6 +13,11 @@ const user = authService.getCurrentUser();
 export const fetchMembers = createAsyncThunk(
   'members/fetchMembers',
   async () => (await memberService.getAllMembers(user.company_id)).data
+);
+
+export const fetchAssignedProject = createAsyncThunk(
+  'members/fetchAssignedProject',
+  async () => memberService.getAssignedProject(user.email)
 );
 
 const memberSlice = createSlice({
@@ -42,6 +47,9 @@ const memberSlice = createSlice({
     [fetchMembers.rejected]: (state, action) => {
       state.status = 'failed';
       state.error = action.error.message;
+    },
+    [fetchAssignedProject.fulfilled]: (state, action) => {
+      state.assignedProject = action.payload;
     },
   },
 });

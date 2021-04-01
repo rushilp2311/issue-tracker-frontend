@@ -19,8 +19,8 @@
 }
 
 @mixin disabled-btn() {
-  background-color: var(--disabled-bg-color);
-  color: var(--disabled-text-color);
+  background-color: var(--bg-color);
+  color: $black-100;
   cursor: pointer;
   border-radius: 2px;
   padding: 5px 12px;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchMembers } from './app/memberSlice';
+import { fetchAssignedProject, fetchMembers } from './app/memberSlice';
 import { fetchProjects } from './app/projectSlice';
 import LandingPage from './components/LandingPage';
 import Header from './components/Header';
@@ -25,6 +25,7 @@ function App() {
     if (projectStatus === 'idle') {
       dispatch(fetchProjects());
     }
+    dispatch(fetchAssignedProject());
   }, [dispatch, memberStatus, projectStatus]);
   return (
     <div className="App">

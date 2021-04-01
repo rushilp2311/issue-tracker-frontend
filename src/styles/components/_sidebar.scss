@@ -5,7 +5,7 @@
   background-color: var(--tertiary-color);
   border-right: 1px solid var(--border-color);
   .sidebar__heading {
-    height: 200px;
+    height: 100px;
     padding: 0.7em 1.2em;
     display: flex;
     margin-top: 20px;
@@ -22,6 +22,18 @@
     padding: 0.7em 2em;
     margin-top: 25px;
   }
+
+  .project__details {
+    padding: 0.7em;
+    margin: 0.7em 1.2em;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+    span {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
   .list {
     margin-top: 50px !important;
     .list__item {

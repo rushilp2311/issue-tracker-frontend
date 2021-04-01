@@ -25,6 +25,17 @@ export async function deleteMember(email) {
   return result;
 }
 
+export async function getAssignedProject(email) {
+  const result = await http.get(`${apiEndpoint}/getassignedproject`, {
+    headers: {
+      email: email,
+    },
+  });
+  return result.data;
+}
+
 export default {
   getAllMembers,
+  registerMember,
+  deleteMember,
 };

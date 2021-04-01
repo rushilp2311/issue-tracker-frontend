@@ -6,19 +6,20 @@
 @import './components/_sidebar';
 @import './components/_main';
 @import './components/_navbar';
-@import './pages/_members';
 @import './components/_memberslist';
 @import './components/_card';
 @import './components/_modal';
 @import './components/_search';
 @import './components/_projectdetails';
 @import './components//_projectaddform';
+@import './components/_emptylist';
+@import './components/_deletemodal';
 @import './pages/_home';
+@import './pages/_members';
+@import './pages/_issues';
 @import './pages/_landingpage';
 @import './pages/_register';
 @import './pages/_projects';
-@import './components/_emptylist';
-@import './components/_deletemodal';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html,

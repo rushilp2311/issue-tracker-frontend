@@ -1,0 +1,38 @@
+@import './utils/_mixins';
+.issues__container {
+  padding: 1.5em 0em;
+  width: 95%;
+  .issues__heading {
+    display: flex;
+    justify-content: space-between;
+    .issues__btn {
+      .issue__add__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .image {
+          height: 1.3em;
+          width: 1.3em;
+          margin-right: 10px;
+        }
+        @include btn(var(--primary-color), var(--inverted-text-color));
+        padding: 5px 20px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .issues__container {
+    padding: 1em;
+    .issues__heading {
+      .issues__btn {
+        .issue__add__btn {
+          padding: 5px 15px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
