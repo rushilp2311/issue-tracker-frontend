@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAssignedProject, fetchMembers } from './app/memberSlice';
 import { fetchProjects } from './app/projectSlice';
+import { fetchUtils } from './app/utilSlice';
 import LandingPage from './components/LandingPage';
 import Header from './components/Header';
 import Register from './components/Register';
@@ -26,6 +27,7 @@ function App() {
       dispatch(fetchProjects());
     }
     dispatch(fetchAssignedProject());
+    dispatch(fetchUtils());
   }, [dispatch, memberStatus, projectStatus]);
   return (
     <div className="App">

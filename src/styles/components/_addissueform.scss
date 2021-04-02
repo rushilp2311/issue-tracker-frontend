@@ -1,0 +1,76 @@
+@import '../utils/variables';
+
+.issue__add-form {
+  form {
+    .form__body {
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        .MuiFormControl-root {
+          width: 100%;
+          stroke: var(--text-color);
+          padding: 0.375rem 0.75rem;
+          border: 1px solid $black-100;
+          background-color: var(--tertiary-color);
+          .MuiInput-underline:not(.Mui-disabled):before {
+            border: none;
+          }
+          .MuiInput-underline:not(.Mui-disabled):after {
+            border: none;
+          }
+          .MuiInputBase-root {
+            border-radius: 2px;
+            color: var(--text-color) !important;
+
+            .MuiInputBase-input::after::before {
+              color: var(--text-color) !important;
+            }
+          }
+        }
+        .MuiFormControl-root:hover {
+          cursor: pointer !important;
+        }
+        select {
+          background-color: var(--tertiary-color);
+          color: var(--text-color);
+          padding: 0.375rem 0.75rem;
+          border: 1px solid $black-100;
+          border-radius: 2px;
+        }
+        select:focus {
+          outline: none;
+          border: 2px solid var(--primary-color);
+        }
+        .assignee {
+          margin: 0;
+          text-align: left;
+          font-size: 16px;
+          display: flex;
+          justify-content: space-between;
+          span {
+            cursor: pointer;
+            .image {
+              stroke: $black-100;
+            }
+          }
+        }
+        .status {
+          text-align: left;
+          font-size: 18px;
+          margin: 0;
+          span {
+            color: $success;
+          }
+        }
+        .assignee__btn {
+          background-color: var(--secondary-color);
+          width: fit-content;
+          color: $blue;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+        }
+      }
+    }
+  }
+}

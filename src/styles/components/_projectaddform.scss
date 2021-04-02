@@ -27,19 +27,27 @@
           .MuiFormControl-root {
             width: 100%;
             stroke: var(--text-color);
+            padding: 0.375rem 0.75rem;
+            border: 1px solid $black-100;
+            background-color: var(--tertiary-color);
             .MuiInput-underline:not(.Mui-disabled):before {
-              border-bottom: 2px solid $black-100;
+              border: none;
             }
             .MuiInput-underline:not(.Mui-disabled):after {
-              border-bottom: 2px solid var(--primary-color);
+              border: none;
             }
             .MuiInputBase-root {
-              color: var(--disabled-text-color) !important;
+              
+              border-radius: 2px;
+              color: var(--text-color) !important;
 
               .MuiInputBase-input::after::before {
                 color: var(--text-color) !important;
               }
             }
+          }
+          .MuiFormControl-root:hover {
+            cursor: pointer !important;
           }
         }
         .member__access {
@@ -80,10 +88,10 @@
               width: 100%;
               stroke: var(--text-color);
               .MuiInput-underline:not(.Mui-disabled):before {
-                border-bottom: 2px solid $black-100;
+                border: 2px solid $black-100;
               }
               .MuiInput-underline:not(.Mui-disabled):after {
-                border-bottom: 2px solid var(--primary-color);
+                border: 2px solid var(--primary-color);
               }
               .MuiInputBase-root {
                 color: var(--disabled-text-color) !important;
