@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 
 import { FiX, FiPlusCircle } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
-import { selectAllMembers } from '../../app/memberSlice';
 import Modal from '../common/modal';
-import AddProjectForm from '../common/forms/addprojectform';
 import AddIssueForm from '../common/forms/addissueform';
-
-const InfoCard = React.lazy(() => import('../common/cards/InfoCard'));
 
 function AddIssue() {
   const [showModal, setShowModal] = useState(false);
+  const assignedProject = useSelector((state) => state.members.assignedProject);
   function handleToggle() {
     setShowModal(!showModal);
   }
@@ -29,13 +26,8 @@ function AddIssue() {
             <div className="modal__header">
               <h3>Report an Issue</h3>
             </div>
-            {/* <>
-              <Suspense fallback={<div>Loading...</div>}>
-                <InfoCard text="There are two major part in this Form. Fill it carefully. Status of the project will be Open by default." />
-              </Suspense>
-            </> */}
             <div className="modal__body">
-              <AddIssueForm />
+              <AddIssueForm project_id={assignedProject.project_id} />
             </div>
           </div>
         </Modal>

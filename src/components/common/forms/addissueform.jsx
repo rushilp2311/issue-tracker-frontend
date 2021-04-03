@@ -7,7 +7,7 @@ import { FiX } from 'react-icons/fi';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import Form from './form';
-import { authService, projectService } from '../../../services';
+import { authService, issueService } from '../../../services';
 
 class AddIssueForm extends Form {
   state = {
@@ -35,7 +35,6 @@ class AddIssueForm extends Form {
   handleAssignee = (e) => {
     e.preventDefault();
     const currentUser = authService.getCurrentUser();
-    console.log(this.props);
     this.setState({
       data: {
         ...this.state.data,
@@ -53,15 +52,13 @@ class AddIssueForm extends Form {
     priority: Joi.string(),
   };
 
-  doSubmit = () => {
+  doSubmit = async () => {
     const currentUser = authService.getCurrentUser();
     try {
-      // await projectService.addProject({
-      //   ...this.state.data,
-      //   company_id: currentUser.company_id,
-      // });
-      console.log(this.state.data);
-      // this.props.setShowModal(false);
+      await issueService.addIssue({
+        ...this.state.data,
+        project_id: this.props.project_id,
+      });
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
