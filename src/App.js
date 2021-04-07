@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAssignedProject, fetchMembers } from './app/memberSlice';
 import { fetchProjects } from './app/projectSlice';
 import { fetchUtils } from './app/utilSlice';
+
 import LandingPage from './components/LandingPage';
 import Header from './components/Header';
 import Register from './components/Register';
@@ -20,11 +21,13 @@ function App() {
 
   useEffect(() => {
     document.title = 'Issue Tracker';
-    if (memberStatus === 'idle') {
-      dispatch(fetchMembers());
-    }
-    if (projectStatus === 'idle') {
-      dispatch(fetchProjects());
+    if (currentUser.is_admin) {
+      if (memberStatus === 'idle') {
+        dispatch(fetchMembers());
+      }
+      if (projectStatus === 'idle') {
+        dispatch(fetchProjects());
+      }
     }
     dispatch(fetchAssignedProject());
     dispatch(fetchUtils());

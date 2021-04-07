@@ -1,7 +1,23 @@
-import React from 'react';
+/* eslint-disable camelcase */
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchIssues } from '../app/issuesSlice';
+import IssuesList from './common/issueslist';
 import AddIssue from './modals/AddIssue';
 
 function Issues() {
+  const dispatch = useDispatch();
+  const issueStatus = useSelector((state) => state.issues.status);
+  const project_id = useSelector(
+    (state) => state.members.assignedProject.project_id
+  );
+  useEffect(() => {
+    if (issueStatus === 'idle') {
+      if (project_id) {
+        dispatch(fetchIssues());
+      }
+    }
+  }, [project_id]);
   return (
     <div className="issues__container">
       <div className="issues__heading">
@@ -12,9 +28,9 @@ function Issues() {
           <AddIssue />
         </div>
       </div>
-      {/* <div className="projects__list">
-        <ProjectList projectlist={projectlist} />
-      </div> */}
+      <div className="issues__list">
+        <IssuesList />
+      </div>
     </div>
   );
 }

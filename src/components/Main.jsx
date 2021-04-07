@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchIssues } from '../app/issuesSlice';
+import { issueService } from '../services';
 import Issues from './Issues';
 import Navbar from './Navbar';
 import Members from './Members';

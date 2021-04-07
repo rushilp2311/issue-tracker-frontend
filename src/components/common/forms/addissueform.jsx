@@ -8,6 +8,7 @@ import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import Form from './form';
 import { authService, issueService } from '../../../services';
+import { issueAdded } from '../../../app/issuesSlice';
 
 class AddIssueForm extends Form {
   state = {
@@ -53,12 +54,13 @@ class AddIssueForm extends Form {
   };
 
   doSubmit = async () => {
-    const currentUser = authService.getCurrentUser();
     try {
-      await issueService.addIssue({
+      const result = await issueService.addIssue({
         ...this.state.data,
         project_id: this.props.project_id,
       });
+      this.props.dispatch(issueAdded(result));
+      this.props.setShowModal(false);
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };

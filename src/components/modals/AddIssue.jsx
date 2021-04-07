@@ -27,7 +27,10 @@ function AddIssue() {
               <h3>Report an Issue</h3>
             </div>
             <div className="modal__body">
-              <AddIssueForm project_id={assignedProject.project_id} />
+              <AddIssueForm
+                project_id={assignedProject.project_id}
+                setShowModal={setShowModal}
+              />
             </div>
           </div>
         </Modal>
