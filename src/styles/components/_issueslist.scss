@@ -1,0 +1,56 @@
+@import '../utils/_variables';
+@import '../utils/_mixins';
+
+.issuelist__container {
+  margin-top: 100px;
+  .issue {
+    display: flex;
+    padding: 0.3em 0.75em;
+    border-top: 1px solid var(--border-color);
+    .issue__id {
+      // margin-right: 70px;
+      width: 10%;
+      .id {
+        font-size: 25px;
+        font-weight: 600;
+      }
+    }
+    .issue__info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-right: 30px;
+      .headers {
+        width: 30%;
+        .title {
+        }
+
+        .description {
+          color: $darkgray;
+        }
+      }
+      .assignee {
+        width: 10%;
+        height: fit-content;
+        text-align: left;
+      }
+    }
+    .controls {
+      width: 20%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      h6 {
+        cursor: pointer;
+        color: $blue;
+        span {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .issue:last-child {
+    border-bottom: 1px solid var(--border-color);
+  }
+}

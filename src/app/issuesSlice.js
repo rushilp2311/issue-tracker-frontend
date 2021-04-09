@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/no-cycle */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
 import { issueService } from '../services';
 import store from './store';
 

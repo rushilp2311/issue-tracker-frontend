@@ -49,7 +49,15 @@ const memberSlice = createSlice({
       state.error = action.error.message;
     },
     [fetchAssignedProject.fulfilled]: (state, action) => {
+      state.status = 'succeeded';
       state.assignedProject = action.payload;
+    },
+    [fetchAssignedProject.pending]: (state, action) => {
+      state.status = 'loading';
+    },
+    [fetchAssignedProject.rejected]: (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
     },
   },
 });

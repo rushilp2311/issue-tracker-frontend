@@ -17,7 +17,7 @@ function Issues() {
         dispatch(fetchIssues());
       }
     }
-  }, [project_id]);
+  }, [dispatch, issueStatus, project_id]);
   return (
     <div className="issues__container">
       <div className="issues__heading">

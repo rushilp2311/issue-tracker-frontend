@@ -17,20 +17,23 @@ function App() {
   const dispatch = useDispatch();
   const memberStatus = useSelector((state) => state.members.status);
   const projectStatus = useSelector((state) => state.projects.status);
+  const utilsStatus = useSelector((state) => state.utils.utilsStatus);
   const [currentUser] = useState(authService.getCurrentUser());
 
   useEffect(() => {
     document.title = 'Issue Tracker';
-    if (currentUser.is_admin) {
-      if (memberStatus === 'idle') {
-        dispatch(fetchMembers());
-      }
-      if (projectStatus === 'idle') {
-        dispatch(fetchProjects());
-      }
+
+    if (memberStatus === 'idle') {
+      dispatch(fetchMembers());
+      dispatch(fetchAssignedProject());
     }
-    dispatch(fetchAssignedProject());
-    dispatch(fetchUtils());
+    if (projectStatus === 'idle') {
+      dispatch(fetchProjects());
+    }
+
+    if (utilsStatus === 'idle') {
+      dispatch(fetchUtils());
+    }
   }, [dispatch, memberStatus, projectStatus]);
   return (
     <div className="App">

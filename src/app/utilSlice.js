@@ -6,6 +6,8 @@ const initialState = {
   roles: [],
   types: [],
   priority: [],
+  utilsStatus: 'idle',
+  error: '',
 };
 
 export const fetchUtils = createAsyncThunk('utils/fetchUtils', async () =>
@@ -22,6 +24,13 @@ const utilsSlice = createSlice({
       state.types = action.payload.typeList;
       state.priority = action.payload.priorityList;
       state.roles = action.payload.rolesList;
+    },
+    [fetchUtils.pending]: (state, action) => {
+      state.utilsStatus = 'loading';
+    },
+    [fetchUtils.rejected]: (state, action) => {
+      state.utilsStatus = 'rejected';
+      state.error = action.error.message;
     },
   },
 });
