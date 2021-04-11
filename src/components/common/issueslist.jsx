@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { selectAllIssues } from '../../app/issuesSlice';
@@ -25,12 +26,14 @@ function IssuesList() {
             </div>
           </div>
           <div className="controls">
-            <h6>
-              Open
-              <span>
-                <FiArrowUpRight />
-              </span>
-            </h6>
+            <Link to={{ pathname: '/issuedetails', state: issue }}>
+              <h6>
+                Open
+                <span>
+                  <FiArrowUpRight />
+                </span>
+              </h6>
+            </Link>
           </div>
         </div>
       ))}

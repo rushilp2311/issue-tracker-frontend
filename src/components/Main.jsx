@@ -6,6 +6,7 @@ import Members from './Members';
 import Projects from './Projects';
 import Search from './Search';
 import ProjectDetail from './ProjectDetail';
+import IssueDetails from './IssueDetails';
 
 function Main() {
   return (
@@ -19,6 +20,7 @@ function Main() {
           <Route path="/profile" component={Members} />
           <Route path="/search" component={Search} />
           <Route path="/projectdetails" component={ProjectDetail} />
+          <Route path="/issuedetails" component={IssueDetails} />
         </Switch>
       </>
     </div>

@@ -1,0 +1,50 @@
+@import '../utils/_variables';
+@import '../utils/_mixins';
+
+.issue__details {
+  padding: 1.5em 0em;
+  width: 95%;
+  height: 100%;
+  .back__link {
+    width: 15%;
+    a {
+      color: var(--text-color) !important;
+
+      .back__link-arrow {
+        font-size: 22px;
+        span {
+          margin-right: 5px;
+        }
+      }
+      .back__link-arrow:hover {
+        transition: 500ms;
+        color: var(--primary-color);
+      }
+    }
+  }
+  .issue__header {
+    margin-top: 30px;
+    border-bottom: 1px solid var(--border-color);
+    .title {
+      display: flex;
+      align-items: center;
+      .id {
+        margin-right: 60px;
+        color: $darkgray;
+      }
+    }
+  }
+  .issue__body {
+    margin-top: 30px;
+    .issue__description {
+      width: 40%;
+
+      p {
+        margin-top: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        padding: 0.3em 0.75em;
+      }
+    }
+  }
+}

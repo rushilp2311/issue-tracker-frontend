@@ -34,7 +34,7 @@ function App() {
     if (utilsStatus === 'idle') {
       dispatch(fetchUtils());
     }
-  }, [dispatch, memberStatus, projectStatus]);
+  });
   return (
     <div className="App">
       <Header />
